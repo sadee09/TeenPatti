@@ -6,112 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="bfdc0251-bb29-4670-b515-81b2a8f60952" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TeenPatti/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeenPatti/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonBackgrounds.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonBackgrounds/NoLimit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonBackgrounds/NoLimit.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonBackgrounds/PlayNow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonBackgrounds/PlayNow.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TeenPatti.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TeenPatti.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_Asidecover.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_Asidecover.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs7.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs8.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubs9.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsA.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsJ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsK.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsQ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_clubsQ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds7.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds8.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamonds9.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsA.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsJ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsK.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsQ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_diamondsQ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts7.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts8.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_hearts9.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsA.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsJ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsK.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsQ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_heartsQ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades10.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades5.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades6.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades7.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades8.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spades9.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesA.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesJ.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesK.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesQ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VIIASS Casino UI Pack/File Design 2D/Poker_Cards/Big_card/VIASS_spadesQ.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +29,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/PanelHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/SettingsUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UICard.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2SmgopbDCVp0lwqpLAUrAMUcAn9" />
@@ -193,7 +104,10 @@
       <option name="presentableId" value="Default" />
       <updated>1689757350395</updated>
       <workItem from="1689823393839" duration="7675000" />
-      <workItem from="1689836083760" duration="3284000" />
+      <workItem from="1689836083760" duration="3288000" />
+      <workItem from="1689907701444" duration="6000" />
+      <workItem from="1689908810552" duration="4697000" />
+      <workItem from="1689926881925" duration="396000" />
     </task>
     <servers />
   </component>
