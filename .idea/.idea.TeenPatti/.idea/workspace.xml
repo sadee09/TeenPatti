@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfdc0251-bb29-4670-b515-81b2a8f60952" name="Changes" comment="" />
+    <list default="true" id="bfdc0251-bb29-4670-b515-81b2a8f60952" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TeenPatti/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeenPatti/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TeenPatti.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TeenPatti.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +17,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/PanelHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/SettingsUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UICard.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2SmgopbDCVp0lwqpLAUrAMUcAn9" />
@@ -85,7 +92,14 @@
       <option name="presentableId" value="Default" />
       <updated>1689757350395</updated>
       <workItem from="1689823393839" duration="7675000" />
-      <workItem from="1689836083760" duration="3284000" />
+      <workItem from="1689836083760" duration="3288000" />
+      <workItem from="1689907701444" duration="6000" />
+      <workItem from="1689908810552" duration="4697000" />
+      <workItem from="1689926881925" duration="869000" />
+      <workItem from="1690169907160" duration="43000" />
+      <workItem from="1690169960331" duration="30000" />
+      <workItem from="1690170160357" duration="30000" />
+      <workItem from="1690183882499" duration="9000" />
     </task>
     <servers />
   </component>
