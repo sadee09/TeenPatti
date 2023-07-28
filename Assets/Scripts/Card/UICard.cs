@@ -7,14 +7,16 @@ public class UICard : MonoBehaviour
     // Start is called before the first frame update
     public Image Front_Cards;
     public GameObject gob_BackCard;
-    void Start()
-    {
-        
-    }
+    public int value; 
+    public SuitType suit; // Add this property to represent the suit of the card
 
-    // Update is called once per frame
-    void Update()
+    public enum SuitType
     {
-        
+        Spades,
+        Hearts,
+        Clubs,
+        Diamonds
     }
+ 
+
 }
