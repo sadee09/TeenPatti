@@ -12,11 +12,24 @@ public class GameController : MonoBehaviour
     public List<GameObject> playerCardsList = new List<GameObject>();
     public List<GameObject> ai1CardsList = new List<GameObject>();
     public List<GameObject> ai2CardsList = new List<GameObject>();
+    public static GameController instance;
 
     public CanvasGroup canvasSee;
     public CanvasGroup canvasSideShow;
 
     public float fadeTime = 1f;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
