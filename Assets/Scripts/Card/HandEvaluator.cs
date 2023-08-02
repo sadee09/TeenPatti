@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public static class HandEvaluator
 {
     public enum HandType
     {
-        HighCard,
-        Pair,
-        Sequence,
-        Color,
-        PureSequence,
-        Trail
+      HighCard,
+      Pair,
+      Sequence,
+      Color,
+      PureSequence,
+      Trail
     }
 
     public static HandType GetHandType(List<GameObject> cardsList)
     {
-        cardsList.Sort(new CardComparer()); // Sorting the list using CardComparer
+          Debug.Log("Sorted Card Values:");
+    foreach (var card in cardsList)
+    {
+        int value = card.GetComponent<UICard>().value;
+        Debug.Log("Card Value: " + value);
+    } // Sorting the list using CardComparer
 
         if (IsTrail(cardsList))
         {
@@ -64,11 +70,8 @@ public static class HandEvaluator
         return cardsList[0].GetComponent<UICard>().value == cardsList[1].GetComponent<UICard>().value ||
                cardsList[1].GetComponent<UICard>().value == cardsList[2].GetComponent<UICard>().value;
     }
-
-    // Add more helper methods if needed to check for specific conditions.
-
-    // Custom comparer to sort the cards based on their values
-    private class CardComparer : IComparer<GameObject>
+       // Custom comparer to sort the cards based on their values
+    public class CardComparer : IComparer<GameObject>
     {
         public int Compare(GameObject card1, GameObject card2)
         {

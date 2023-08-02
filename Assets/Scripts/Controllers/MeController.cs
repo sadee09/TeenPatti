@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MeController : PlayerController
 {
@@ -13,12 +14,18 @@ public class MeController : PlayerController
     public GameObject subButton;
     public TextMeshProUGUI total;
     public GameObject packButton;
-    public GameObject activering;
+
+    public Button seeBtn;
+    public Button sideShowBtn;
 
     private bool AddActive;
     private bool SubActive;
     private bool seen;
     private int TotalMoney;
+
+    public Image uiFill;
+    public int Duration;
+    private int remainingDuration;
 
     private void Awake()
     {
@@ -45,8 +52,6 @@ public class MeController : PlayerController
 
         // Set the packButton to initially inactive
         packButton.SetActive(false);
-        Panel.SetActive(false);
-        activering.SetActive(false);
     }
 
     // Add method for doubling the value displayed in myText
@@ -95,7 +100,7 @@ public class MeController : PlayerController
         }
 
         // Call the PackButton method to check if the packButton should be activated
-        packButton.SetActive(true);
+        PackButton();
     }
 
     // Method to update the TotalMoney and the text displayed in total
@@ -111,6 +116,15 @@ public class MeController : PlayerController
         gameManager.StartNextTurn();
     }
 
+    // Method to activate the packButton
+    public void PackButton()
+    {
+        if (seen)
+        {
+            packButton.SetActive(true);
+        }
+    }
+
     // Method called when the "Pack" button is clicked
     public void Pack()
     {
@@ -123,7 +137,7 @@ public class MeController : PlayerController
             }
         }
 
-        // starts next players turn
+        // Ends the player's turn
         gameManager.StartNextTurn();
     }
 
@@ -131,13 +145,32 @@ public class MeController : PlayerController
     {
         Debug.Log("My turn started");
         Panel.SetActive(true);
-        activering.SetActive(true);
+        seeBtn.interactable = true;
+        sideShowBtn.interactable = true;
+        Begin(Duration);
+
+    }
+
+    void Begin(int Second) 
+    {
+      remainingDuration = Second;
+      StartCoroutine(UpdateTimer());
+    }
+
+    private IEnumerator UpdateTimer()
+    {
+      while(remainingDuration >= 0) 
+      {
+        uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+        remainingDuration--;
+      yield return new WaitForSeconds(1f);
+      }
+        EndTurn();
     }
 
     public override void EndTurn()
     {
         Debug.Log("My turn ended");
         Panel.SetActive(false);
-        activering.SetActive(false);
     }
 }
