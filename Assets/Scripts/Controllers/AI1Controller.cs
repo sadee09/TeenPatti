@@ -1,8 +1,14 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class AI1Controller : PlayerController
 {
+  public Image uiFill;
+  public int Duration;
+  private int remainingDuration;
+
     private void Awake()
     {   
         gameManager = FindObjectOfType<PlayerManager>();
@@ -19,6 +25,7 @@ public class AI1Controller : PlayerController
     public override void StartTurn()
     {
         Debug.Log("Start Ai1 turn");
+        Begin(Duration);
 
         StartCoroutine(PerformAITurn());
     }
@@ -27,7 +34,24 @@ public class AI1Controller : PlayerController
     {
         yield return new WaitForSeconds(5f);
 
-        gameManager.StartNextTurn();;
+        gameManager.StartNextTurn();
+    }
+
+    void Begin(int Second) 
+    {
+      remainingDuration = Second;
+      StartCoroutine(UpdateTimer());
+    }
+
+    private IEnumerator UpdateTimer()
+    {
+      while(remainingDuration >= 0) 
+      {
+        uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+        remainingDuration--;
+      yield return new WaitForSeconds(1f);
+      }
+        EndTurn();
     }
 
     public override void EndTurn()

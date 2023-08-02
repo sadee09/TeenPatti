@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MeController : PlayerController
 {
@@ -14,10 +15,17 @@ public class MeController : PlayerController
     public TextMeshProUGUI total;
     public GameObject packButton;
 
+    public Button seeBtn;
+    public Button sideShowBtn;
+
     private bool AddActive;
     private bool SubActive;
     private bool seen;
     private int TotalMoney;
+
+    public Image uiFill;
+    public int Duration;
+    private int remainingDuration;
 
     private void Awake()
     {
@@ -137,6 +145,27 @@ public class MeController : PlayerController
     {
         Debug.Log("My turn started");
         Panel.SetActive(true);
+        seeBtn.interactable = true;
+        sideShowBtn.interactable = true;
+        Begin(Duration);
+
+    }
+
+    void Begin(int Second) 
+    {
+      remainingDuration = Second;
+      StartCoroutine(UpdateTimer());
+    }
+
+    private IEnumerator UpdateTimer()
+    {
+      while(remainingDuration >= 0) 
+      {
+        uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+        remainingDuration--;
+      yield return new WaitForSeconds(1f);
+      }
+        EndTurn();
     }
 
     public override void EndTurn()

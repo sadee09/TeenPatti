@@ -32,14 +32,7 @@ public class GameController : MonoBehaviour
   public Button seeBtn;
   public Button sideShowBtn;
   public Button chaalBtn;
- 
 
-  public enum PlayerType{
-    player,
-    ai1,
-    ai2
-  }
-  public List<PlayerType> playerTypes = new List<PlayerType>();
 
   void Start()
   {
@@ -106,19 +99,20 @@ public class GameController : MonoBehaviour
 
   IEnumerator SplitCards()
   {
+
     for (int i = 0; i < 3; i++)
     {
+      
       yield return new WaitForSeconds(0.5f);
-      MoveCardToTransform(playerCardsList[i], arr_Tf_player[i]);
+      MoveCardToTransform(ai1CardsList[i], arr_Tf_AI1[i]);
       gameGirlSit.SetActive(true);
       gameGirl.SetActive(false);
 
-
+     
       yield return new WaitForSeconds(0.5f);
-      MoveCardToTransform(ai1CardsList[i], arr_Tf_AI1[i]);
+      MoveCardToTransform(playerCardsList[i], arr_Tf_player[i]);
       gameGirlSit.SetActive(false);
       gameGirl.SetActive(true);
-
 
       yield return new WaitForSeconds(0.5f);
       MoveCardToTransform(ai2CardsList[i], arr_Tf_AI2[i]);
@@ -131,7 +125,7 @@ public class GameController : MonoBehaviour
 
     canvasSee.DOFade(1, fadeTime);
     canvasSideShow.DOFade(1, fadeTime);
-    seeBtn.interactable = true;
+    DetermineWinningHand();
 
   }
 
@@ -151,7 +145,7 @@ public class GameController : MonoBehaviour
 
   public void SideShowCard()
   {
-    StartCoroutine(RotateCardsList(ai2CardsList));
+    StartCoroutine(RotateCardsList(ai1CardsList));
   }
 
   private IEnumerator RotateCardsList(List<GameObject> cardsList)
@@ -208,29 +202,36 @@ public class GameController : MonoBehaviour
     }
   }
 
+public void DetermineWinningHand()
+{
+    playerCardsList.Sort(new HandEvaluator.CardComparer());
+    ai1CardsList.Sort(new HandEvaluator.CardComparer());
+    ai2CardsList.Sort(new HandEvaluator.CardComparer());
 
-
-  public void DetermineWinningHand()
-  {
     HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
-    HandEvaluator.HandType ai1HandType= HandEvaluator.GetHandType(ai1CardsList);
+    HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
     HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
 
-    if(playerHandType > ai1HandType && playerHandType > ai2HandType)
+    Debug.Log("Player Hand Type: " + playerHandType);
+    Debug.Log("AI1 Hand Type: " + ai1HandType);
+    Debug.Log("AI2 Hand Type: " + ai2HandType);
+
+    if (playerHandType > ai1HandType && playerHandType > ai2HandType)
     {
-      Debug.Log("Player Wins " + playerHandType);
+        Debug.Log("Player Wins " + playerHandType);
     }
     else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
     {
-      Debug.Log("AI1 Wins " + ai1HandType);
+        Debug.Log("AI1 Wins " + ai1HandType);
     }
     else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
     {
-      Debug.Log("AI2 Wins " + ai2HandType);
+        Debug.Log("AI2 Wins " + ai2HandType);
     }
     else
     {
-      Debug.Log("It's a tie");
+        Debug.Log("It's a tie");
     }
-  }
+}
+
 }
