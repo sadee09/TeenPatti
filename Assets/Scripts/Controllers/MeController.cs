@@ -14,6 +14,7 @@ public class MeController : PlayerController
     public GameObject subButton;
     public TextMeshProUGUI total;
     public GameObject packButton;
+    public GameObject activering;
 
     public Button seeBtn;
     public Button sideShowBtn;
@@ -52,6 +53,8 @@ public class MeController : PlayerController
 
         // Set the packButton to initially inactive
         packButton.SetActive(false);
+        activering.SetActive(false);
+        Panel.SetActive(false);
     }
 
     // Add method for doubling the value displayed in myText
@@ -148,7 +151,7 @@ public class MeController : PlayerController
         seeBtn.interactable = true;
         sideShowBtn.interactable = true;
         Begin(Duration);
-
+        activering.SetActive(true);
     }
 
     void Begin(int Second) 
@@ -172,5 +175,6 @@ public class MeController : PlayerController
     {
         Debug.Log("My turn ended");
         Panel.SetActive(false);
+        activering.SetActive(false);
     }
 }

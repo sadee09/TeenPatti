@@ -69,7 +69,7 @@ public class A2Controller : PlayerController
         remainingDuration--;
       yield return new WaitForSeconds(1f);
       }
-        EndTurn();
+        gameManager.StartNextTurn();
     }
 
     private void PlaceBet()
