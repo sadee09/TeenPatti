@@ -6029,6 +6029,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dae4dceab03843b986345a02c3d1c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betText: {fileID: 0}
+  moneyText: {fileID: 0}
+  activering: {fileID: 0}
   uiFill: {fileID: 1081118637}
   Duration: 10
 --- !u!4 &1976427267
@@ -6265,6 +6268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04420e54fcc304d1b92269cb7e93691a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betText: {fileID: 0}
+  moneyText: {fileID: 0}
+  activering: {fileID: 0}
   uiFill: {fileID: 418263581}
   Duration: 10
 --- !u!4 &2098102042

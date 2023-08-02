@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class A2Controller : PlayerController
 {
@@ -10,6 +12,10 @@ public class A2Controller : PlayerController
     private int totalMoney = 10000;
     private int currentBet = 0;
     private int lastBet = 0;
+
+    public Image uiFill;
+    public int Duration;
+    private int remainingDuration;
 
     private void Awake()
     {
@@ -46,6 +52,24 @@ public class A2Controller : PlayerController
         StartCoroutine(PerformAITurn());
         activering.SetActive(true);
         Debug.Log("Start AI2 turn");
+         Begin(Duration);
+    }
+
+    void Begin(int Second) 
+    {
+      remainingDuration = Second;
+      StartCoroutine(UpdateTimer());
+    }
+
+    private IEnumerator UpdateTimer()
+    {
+      while(remainingDuration >= 0) 
+      {
+        uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+        remainingDuration--;
+      yield return new WaitForSeconds(1f);
+      }
+        EndTurn();
     }
 
     private void PlaceBet()
