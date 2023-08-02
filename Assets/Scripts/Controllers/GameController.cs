@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
   public CanvasGroup canvasSee;
   public CanvasGroup canvasSideShow;
   public CanvasGroup canvasPlayerPanel;
-  public GameObject playerPanel;
 
   public GameObject gameGirl;
   public GameObject gameGirlSit;
@@ -29,7 +28,6 @@ public class GameController : MonoBehaviour
 
   public Button packBtn;
   public Button blindBtn;
-  public Button seeBtn;
   public Button sideShowBtn;
   public Button chaalBtn;
  
@@ -51,8 +49,6 @@ public class GameController : MonoBehaviour
     {
         StartCoroutine(WaitForCardLoading());
     }
-    playerPanel.GetComponent<CanvasGroup>().interactable = false;
-    seeBtn.interactable = false;
     sideShowBtn.interactable = false;
 
   }
@@ -126,12 +122,10 @@ public class GameController : MonoBehaviour
 
     gameGirl.SetActive(false);
     gameGirlSit.SetActive(true);
-    playerPanel.GetComponent<CanvasGroup>().interactable = true;
-    
 
     canvasSee.DOFade(1, fadeTime);
     canvasSideShow.DOFade(1, fadeTime);
-    seeBtn.interactable = true;
+
 
   }
 

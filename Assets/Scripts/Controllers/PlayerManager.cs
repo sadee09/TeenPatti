@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private List<PlayerController> players = new List<PlayerController>();
-    private int currentPlayerIndex = 0;
+    private int currentPlayerIndex = 1;
     private bool gameStarted = false;
 
     void Start()
