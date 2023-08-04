@@ -18,53 +18,63 @@ public class UICard : MonoBehaviour
         Diamonds
     }
  
-void Start()
-{
-    string str = Front_Cards.sprite.name;
-    char lastChar = str[str.Length - 1];
+  void Start()
+  {
+      string str = Front_Cards.sprite.name;
 
-    if (char.IsDigit(lastChar))
-    {
-        if (int.TryParse(lastChar.ToString(), out int parsedValue))
-        {
-            value = parsedValue;
-        }
-        else
-        {
-            // Handle the case where parsing fails, e.g., set a default value or show an error message.
-            Debug.LogError("Failed to parse value from sprite name: " + str);
-            value = 0; // Set a default value or some appropriate value in case of failure.
-        }
-    }
-    else
-    {
-        // Handle face cards (A, K, Q, J)
-        switch (lastChar)
-        {
-            case '0':
-              value = 10;
+      // Extract the suit part of the sprite name after the "_"
+      int underscoreIndex = str.IndexOf('_') ;
+      string suitPart = str.Substring(underscoreIndex + 1, str.Length - underscoreIndex - 2);
+
+      // Handle the suit type
+      switch (suitPart)
+      {
+          case "spades":
+              suit = SuitType.Spades;
               break;
-            case 'A':
-                value = 1;
-                break;
-            case 'K':
-                value = 13;
-                break;
-            case 'Q':
-                value = 12;
-                break;
-            case 'J':
-                value = 11;
-                break;
-            default:
-                // Handle unknown characters, set a default value, or show an error message.
-                Debug.LogError("Invalid character in sprite name: " + lastChar);
-                value = 0; // Set a default value or some appropriate value when the character is unknown.
-                break;
-        }
-    }
-}
-
-
-
+          case "hearts":
+              suit = SuitType.Hearts;
+              break;
+          case "clubs":
+              suit = SuitType.Clubs;
+              break;
+          case "diamonds":
+              suit = SuitType.Diamonds;
+              break;
+      }
+      // Check if the last two characters are digits (0-9) to handle numeric values (e.g., "10")
+      if (str.Length >= 2 && char.IsDigit(str[str.Length - 1]) && char.IsDigit(str[str.Length - 2]))
+      {
+          if (int.TryParse(str.Substring(str.Length - 2), out int parsedValue))
+          {
+              value = parsedValue;
+          }
+      }
+      else
+      {
+          // Handle face cards (A, K, Q, J) and single-digit numeric values (2-9)
+          char lastChar = str[str.Length - 1];
+          switch (lastChar)
+          {
+              case 'A':
+                  value = 14;
+                  break;
+              case 'K':
+                  value = 13;
+                  break;
+              case 'Q':
+                  value = 12;
+                  break;
+              case 'J':
+                  value = 11;
+                  break;
+              default:
+                  if (char.IsDigit(lastChar))
+                  {
+                      value = int.Parse(lastChar.ToString());
+                  }
+                  break;
+          }
+      }
+  }
 }
