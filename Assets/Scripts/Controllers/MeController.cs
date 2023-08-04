@@ -15,7 +15,6 @@ public class MeController : PlayerController
     public TextMeshProUGUI total;
     public GameObject packButton;
     public GameObject activering;
-
     public Button seeBtn;
     public Button sideShowBtn;
 
@@ -23,10 +22,7 @@ public class MeController : PlayerController
     private bool SubActive;
     private bool seen;
     private int TotalMoney;
-
-    public Image uiFill;
-    public int Duration;
-    private int remainingDuration;
+    private MoneyManager moneyManager;
 
     private void Awake()
     {
@@ -112,8 +108,8 @@ public class MeController : PlayerController
         int sourceMoney;
         if (int.TryParse(myText.text, out sourceMoney))
         {
-            TotalMoney += sourceMoney;
-            total.text = TotalMoney.ToString();
+            // Call the Add method of MoneyManager to update the total money
+            MoneyManager.instance.UpdateTotalMoney(sourceMoney);
         }
 
         gameManager.StartNextTurn();
@@ -136,45 +132,30 @@ public class MeController : PlayerController
         {
             foreach (GameObject card in GameController.instance.playerCardsList)
             {
-                Destroy(card);
+                card.SetActive(false);
             }
         }
 
         // Ends the player's turn
         gameManager.StartNextTurn();
+
+        gameManager.PlayerPack();
     }
 
     public override void StartTurn()
     {
-        Debug.Log("My turn started");
         Panel.SetActive(true);
         seeBtn.interactable = true;
         sideShowBtn.interactable = true;
-        Begin(Duration);
         activering.SetActive(true);
-    }
-
-    void Begin(int Second) 
-    {
-      remainingDuration = Second;
-      StartCoroutine(UpdateTimer());
-    }
-
-    private IEnumerator UpdateTimer()
-    {
-      while(remainingDuration >= 0) 
-      {
-        uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
-        remainingDuration--;
-      yield return new WaitForSeconds(1f);
-      }
-        EndTurn();
+        Debug.Log("Start of players turn");
     }
 
     public override void EndTurn()
     {
-        Debug.Log("My turn ended");
         Panel.SetActive(false);
         activering.SetActive(false);
+        sideShowBtn.interactable = false;
+        Debug.Log("End of players turn");
     }
 }

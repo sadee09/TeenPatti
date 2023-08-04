@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     private List<PlayerController> players = new List<PlayerController>();
     private int currentPlayerIndex = 1;
     private bool gameStarted = false;
+    public GameController gameController;
 
     void Start()
     {
@@ -26,13 +27,35 @@ public class PlayerManager : MonoBehaviour
 
     public void StartNextTurn()
     {
-        if (!gameStarted)
-        {
-            Debug.Log("Game not started yet.");
-            return;
-        }
+        Debug.Log("Next turn started");
         players[currentPlayerIndex].EndTurn();
         currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
         players[currentPlayerIndex].StartTurn();
+    }
+
+    public void PlayerPack()
+    {
+        int i = currentPlayerIndex - 1;
+
+        if (i < 0)
+        {
+            i = players.Count - 1;
+        }
+
+        if (i >= 0 && i < players.Count)
+        {
+            PlayerController removedPlayer = players[i];
+            players.RemoveAt(i);
+
+            currentPlayerIndex = i % players.Count;
+
+            if (players.Count == 1)
+            {
+                PlayerController winner = players[0];
+                players[currentPlayerIndex].EndTurn();
+                gameController.EndGame();
+                gameController.RestartGame();
+            }
+        }
     }
 }

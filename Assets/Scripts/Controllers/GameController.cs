@@ -1,9 +1,10 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class GameController : MonoBehaviour
@@ -32,7 +33,17 @@ public class GameController : MonoBehaviour
   public Button seeBtn;
   public Button sideShowBtn;
   public Button chaalBtn;
+  public GameObject EndGamePanel;
 
+  public HandEvaluator.HandType ai1HandType;
+
+  private void Awake()
+  {
+    if (instance == null)
+    {
+      instance = this;
+    }
+  }
 
   void Start()
   {
@@ -47,7 +58,7 @@ public class GameController : MonoBehaviour
     playerPanel.GetComponent<CanvasGroup>().interactable = false;
     seeBtn.interactable = false;
     sideShowBtn.interactable = false;
-
+    EndGamePanel.SetActive(false);
   }
 
   IEnumerator WaitForCardLoading()
@@ -202,36 +213,53 @@ public class GameController : MonoBehaviour
     }
   }
 
-public void DetermineWinningHand()
-{
-    playerCardsList.Sort(new HandEvaluator.CardComparer());
-    ai1CardsList.Sort(new HandEvaluator.CardComparer());
-    ai2CardsList.Sort(new HandEvaluator.CardComparer());
+  public void DetermineWinningHand()
+  {
+      playerCardsList.Sort(new HandEvaluator.CardComparer());
+      ai1CardsList.Sort(new HandEvaluator.CardComparer());
+      ai2CardsList.Sort(new HandEvaluator.CardComparer());
 
-    HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
-    HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
-    HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
+      HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
+      HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
+      HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
 
-    Debug.Log("Player Hand Type: " + playerHandType);
-    Debug.Log("AI1 Hand Type: " + ai1HandType);
-    Debug.Log("AI2 Hand Type: " + ai2HandType);
+      Debug.Log("Player Hand Type: " + playerHandType);
+      Debug.Log("AI1 Hand Type: " + ai1HandType);
+      Debug.Log("AI2 Hand Type: " + ai2HandType);
 
-    if (playerHandType > ai1HandType && playerHandType > ai2HandType)
-    {
-        Debug.Log("Player Wins " + playerHandType);
-    }
-    else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
-    {
-        Debug.Log("AI1 Wins " + ai1HandType);
-    }
-    else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
-    {
-        Debug.Log("AI2 Wins " + ai2HandType);
-    }
-    else
-    {
-        Debug.Log("It's a tie");
-    }
-}
+      if (playerHandType > ai1HandType && playerHandType > ai2HandType)
+      {
+          Debug.Log("Player Wins " + playerHandType);
+      }
+      else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
+      {
+          Debug.Log("AI1 Wins " + ai1HandType);
+      }
+      else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
+      {
+          Debug.Log("AI2 Wins " + ai2HandType);
+      }
+      else
+      {
+          Debug.Log("It's a tie");
+      }
+  }
 
+  public void EndGame()
+  {
+    EndGamePanel.SetActive(true);
+  }
+
+  public void RestartGame()
+  {
+    StartCoroutine(RestartAfterDelay(3f));
+  }
+
+  private IEnumerator RestartAfterDelay(float delayInSeconds)
+  {
+    yield return new WaitForSeconds(delayInSeconds);
+
+    // Restart the game after the delay
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+  }
 }
