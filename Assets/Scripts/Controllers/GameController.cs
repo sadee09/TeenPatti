@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class GameController : MonoBehaviour
@@ -35,6 +36,16 @@ public class GameController : MonoBehaviour
 
   public TMP_Text winnerText;
 
+  public HandEvaluator.HandType ai1HandType;
+  public HandEvaluator.HandType ai2HandType;
+
+  private void Awake()
+  {
+    if (instance == null)
+    {
+      instance = this;
+    }
+  }
 
   void Start()
   {
@@ -124,7 +135,6 @@ public class GameController : MonoBehaviour
       
     canvasSee.DOFade(1, fadeTime);
     canvasSideShow.DOFade(1, fadeTime);
-    DetermineWinningHand();
 
   }
 
@@ -279,4 +289,21 @@ private UICard GetHighestCard(List<GameObject> cards)
     return highestCard;
 }
 
+  public void EndGame()
+  {
+    DetermineWinningHand();
+  }
+
+  public void RestartGame()
+  {
+    StartCoroutine(RestartAfterDelay(3f));
+  }
+
+  private IEnumerator RestartAfterDelay(float delayInSeconds)
+  {
+    yield return new WaitForSeconds(delayInSeconds);
+
+    // Restart the game after the delay
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+  }
 }

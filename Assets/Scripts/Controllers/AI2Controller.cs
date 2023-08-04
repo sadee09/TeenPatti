@@ -79,7 +79,7 @@ public class AI2Controller : PlayerController
     {
         if (isSeen)
         {
-            if (GameController.instance.ai1HandType == HandEvaluator.HandType.HighCard)
+            if (GameController.instance.ai2HandType == HandEvaluator.HandType.HighCard)
             {
                 if ((random < 60 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
                 {
@@ -90,7 +90,7 @@ public class AI2Controller : PlayerController
                     Pack();
                 }
             }
-            else if (GameController.instance.ai1HandType == HandEvaluator.HandType.Pair)
+            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Pair)
             {
                 if ((random < 95 && turn == 1) || (random < 90 && turn == 2) || (random < 80))
                 {
@@ -101,7 +101,7 @@ public class AI2Controller : PlayerController
                     Pack();
                 }
             }
-            else if (GameController.instance.ai1HandType == HandEvaluator.HandType.Color)
+            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Color)
             {
                 if ((random < 100 && turn == 1) || (random < 95 && turn == 2) || (random < 85))
                 {
@@ -112,7 +112,7 @@ public class AI2Controller : PlayerController
                     Pack();
                 }
             }
-            else if (GameController.instance.ai1HandType == HandEvaluator.HandType.Sequence)
+            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Sequence)
             {
                 if ((random < 100 && turn == 1) || (random < 98 && turn == 2) || (random < 95))
                 {
@@ -123,7 +123,7 @@ public class AI2Controller : PlayerController
                     Pack();
                 }
             }
-            else if (GameController.instance.ai1HandType == HandEvaluator.HandType.PureSequence)
+            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.PureSequence)
             {
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 95))
                 {
@@ -134,7 +134,7 @@ public class AI2Controller : PlayerController
                     Pack();
                 }
             }
-            else if (GameController.instance.ai1HandType == HandEvaluator.HandType.Trail)
+            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Trail)
             {
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 98))
                 {
