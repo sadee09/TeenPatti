@@ -1,4 +1,4 @@
-using System.ComponentModel;
+
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
@@ -10,27 +10,20 @@ public class SettingsUI : MonoBehaviour
     public CanvasGroup canvasGroup;
     private static SettingsUI instance;
 
-    // Singleton instance property
-    public static SettingsUI Instance
+
+  public static SettingsUI  GetInstance()
+  {
+    return instance; 
+  }
+
+void Start()
+{
+    if (instance == null)
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<SettingsUI>();
-                if (instance == null)
-                {
-                    // Since there is no instance found, create a new GameObject with the SettingsUI component.
-                    GameObject settings = new GameObject("Settings");
-                    instance = settings.AddComponent<SettingsUI>();
-                    instance.rectTransform = settings.AddComponent<RectTransform>();
-                    instance.canvasGroup = settings.AddComponent<CanvasGroup>();
-                    DontDestroyOnLoad(settings); // Persist the instance across scenes
-                }
-            }
-            return instance;
-        }
+        instance = this;
     }
+}
+  
     public void PanelIn()
     {
         canvasGroup.alpha = 0;

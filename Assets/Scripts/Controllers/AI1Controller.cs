@@ -51,7 +51,7 @@ public class AI1Controller : PlayerController
         StartCoroutine(PerformAITurn());
         activering.SetActive(true);
         Debug.Log("Start AI1 turn");
-         Begin(Duration);
+         //Begin(Duration);
     }
 
 

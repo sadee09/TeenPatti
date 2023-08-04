@@ -1,9 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class GameController : MonoBehaviour
@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
   public Button seeBtn;
   public Button sideShowBtn;
   public Button chaalBtn;
+
+  public TMP_Text winnerText;
 
 
   void Start()
@@ -67,8 +69,6 @@ public class GameController : MonoBehaviour
         GameObject card = Instantiate(cards, tf_BoxCard.position, Quaternion.identity);
         card.transform.SetParent(tf_BoxCard, false);
         card.GetComponent<UICard>().Front_Cards.sprite = SpriteGame.instance.arr_Cards[i];
-        card.GetComponent<UICard>().value = i + 1;
-        //card.GetComponent<UICard>().suit = GetCardSuit(SpriteGame.instance.arr_Cards[i]); 
         listCard.Add(card);
     }
 
@@ -91,7 +91,6 @@ public class GameController : MonoBehaviour
       int rdAI2 = Random.Range(0, listCard.Count);
       ai2CardsList.Add(listCard[rdAI2]);
       listCard.RemoveAt(rdAI2);
-
     }
 
     StartCoroutine(SplitCards());
@@ -107,8 +106,7 @@ public class GameController : MonoBehaviour
       MoveCardToTransform(ai1CardsList[i], arr_Tf_AI1[i]);
       gameGirlSit.SetActive(true);
       gameGirl.SetActive(false);
-
-     
+        
       yield return new WaitForSeconds(0.5f);
       MoveCardToTransform(playerCardsList[i], arr_Tf_player[i]);
       gameGirlSit.SetActive(false);
@@ -116,13 +114,14 @@ public class GameController : MonoBehaviour
 
       yield return new WaitForSeconds(0.5f);
       MoveCardToTransform(ai2CardsList[i], arr_Tf_AI2[i]);
+
     }
 
+    yield return new WaitForSeconds(0.5f);
     gameGirl.SetActive(false);
     gameGirlSit.SetActive(true);
     playerPanel.GetComponent<CanvasGroup>().interactable = true;
-    
-
+      
     canvasSee.DOFade(1, fadeTime);
     canvasSideShow.DOFade(1, fadeTime);
     DetermineWinningHand();
@@ -192,46 +191,92 @@ public class GameController : MonoBehaviour
 
   public void OnSettingsButtonClick()
   {
-    // Get the SettingsUI instance
-    SettingsUI settingsPanel = SettingsUI.Instance;
-
-    // Show the settings panel if it exists
-    if (settingsPanel != null)
-    {
-        settingsPanel.PanelIn();
-    }
+        SettingsUI.GetInstance().PanelIn();
   }
 
+  public void CardsLists(List<GameObject> cardsList)
+  {
+      foreach (var card in cardsList)
+      {
+          UICard uiCard = card.GetComponent<UICard>();
+          Debug.Log(uiCard.value);
+      }
+  }
 public void DetermineWinningHand()
 {
-    playerCardsList.Sort(new HandEvaluator.CardComparer());
-    ai1CardsList.Sort(new HandEvaluator.CardComparer());
-    ai2CardsList.Sort(new HandEvaluator.CardComparer());
+   
+    playerCardsList = HandEvaluator.Sorter.GetSortedCards(playerCardsList);
+    ai1CardsList = HandEvaluator.Sorter.GetSortedCards(ai1CardsList);
+    ai2CardsList = HandEvaluator.Sorter.GetSortedCards(ai2CardsList);
 
     HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
     HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
     HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
 
-    Debug.Log("Player Hand Type: " + playerHandType);
-    Debug.Log("AI1 Hand Type: " + ai1HandType);
-    Debug.Log("AI2 Hand Type: " + ai2HandType);
-
     if (playerHandType > ai1HandType && playerHandType > ai2HandType)
     {
-        Debug.Log("Player Wins " + playerHandType);
+     winnerText.text = "You Win : " + playerHandType;
     }
     else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
     {
-        Debug.Log("AI1 Wins " + ai1HandType);
+        winnerText.text = "AI1 Wins : " + ai1HandType;
     }
     else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
     {
-        Debug.Log("AI2 Wins " + ai2HandType);
+        winnerText.text = "AI2 Wins : " + ai2HandType;
+        
     }
     else
     {
-        Debug.Log("It's a tie");
+        DetermineTieBreaker(playerCardsList, ai1CardsList, ai2CardsList);
     }
+}
+
+
+private void DetermineTieBreaker(List<GameObject> playerCards, List<GameObject> ai1Cards, List<GameObject> ai2Cards)
+{
+    UICard playerHighestCard = GetHighestCard(playerCards);
+    UICard ai1HighestCard = GetHighestCard(ai1Cards);
+    UICard ai2HighestCard = GetHighestCard(ai2Cards);
+
+    int highestValue = Mathf.Max(playerHighestCard.value, ai1HighestCard.value, ai2HighestCard.value);
+
+    // Check the winner based on the highest card value
+    if (playerHighestCard.value == highestValue)
+    {
+        winnerText.text = "You win : Highest Cards";
+    }
+    else if (ai1HighestCard.value == highestValue)
+    {
+        winnerText.text = "AI1 wins : Highest Cards";
+    }
+    else if (ai2HighestCard.value == highestValue)
+    {
+        winnerText.text = "AI2 wins : Highest Cards";
+    }
+}
+
+private UICard GetHighestCard(List<GameObject> cards)
+{
+    UICard highestCard = null;
+    foreach (var card in cards)
+    {
+        UICard uiCard = card.GetComponent<UICard>();
+        if (highestCard == null || uiCard.value > highestCard.value)
+        {
+            highestCard = uiCard;
+        }
+        else if(uiCard.value == highestCard.value)
+        {
+            int nextCardIndex = (cards.IndexOf(card) + 1) % 3;
+            UICard nextCard = cards[nextCardIndex].GetComponent<UICard>();
+            if (nextCard.value > highestCard.value)
+            {
+                highestCard = nextCard;
+            }
+        }
+    }
+    return highestCard;
 }
 
 }

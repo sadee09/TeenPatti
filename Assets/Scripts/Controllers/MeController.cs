@@ -150,8 +150,8 @@ public class MeController : PlayerController
         Panel.SetActive(true);
         seeBtn.interactable = true;
         sideShowBtn.interactable = true;
-        Begin(Duration);
         activering.SetActive(true);
+        //Begin(Duration);
     }
 
     void Begin(int Second) 

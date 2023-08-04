@@ -52,7 +52,7 @@ public class A2Controller : PlayerController
         StartCoroutine(PerformAITurn());
         activering.SetActive(true);
         Debug.Log("Start AI2 turn");
-         Begin(Duration);
+         //Begin(Duration);
     }
 
     void Begin(int Second) 
