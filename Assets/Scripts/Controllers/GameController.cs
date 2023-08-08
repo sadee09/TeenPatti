@@ -195,8 +195,6 @@ public class GameController : MonoBehaviour
 
     gameGirl.SetActive(false);
     gameGirlSit.SetActive(true);
-    // Clear the lists as the cards are now back in the deck.
-    playerCardsList.Clear();
   }
 
   public void OnSettingsButtonClick()
@@ -214,14 +212,23 @@ public class GameController : MonoBehaviour
   }
 public void DetermineWinningHand()
 {
+    Debug.Log("determine wining");
    
     playerCardsList = HandEvaluator.Sorter.GetSortedCards(playerCardsList);
     ai1CardsList = HandEvaluator.Sorter.GetSortedCards(ai1CardsList);
     ai2CardsList = HandEvaluator.Sorter.GetSortedCards(ai2CardsList);
 
+
+
+    Debug.Log("ai1 card list"+ai1CardsList.Count);
+    Debug.Log("ai2 card list"+ai2CardsList.Count);
+    Debug.Log("player card list"+playerCardsList.Count);
     HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
     HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
     HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
+
+    
+
 
     if (playerHandType > ai1HandType && playerHandType > ai2HandType)
     {
@@ -292,6 +299,7 @@ private UICard GetHighestCard(List<GameObject> cards)
   public void EndGame()
   {
     DetermineWinningHand();
+    Debug.Log("Game has ended");
   }
 
   public void RestartGame()
@@ -303,7 +311,6 @@ private UICard GetHighestCard(List<GameObject> cards)
   {
     yield return new WaitForSeconds(delayInSeconds);
 
-    // Restart the game after the delay
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
   }
 }

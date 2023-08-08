@@ -51,7 +51,6 @@ public class PlayerManager : MonoBehaviour
 
             if (players.Count == 1)
             {
-                PlayerController winner = players[0];
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
                 gameController.RestartGame();
