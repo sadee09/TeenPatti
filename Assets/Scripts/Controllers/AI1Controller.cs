@@ -70,7 +70,7 @@ public class AI1Controller : PlayerController
             isSeen = false;
             PlaceBet();
         }
-        else if (random < 10 && turn == 3)
+        else if (random < 10)
         {
             isSeen = false;
             PlaceBet();

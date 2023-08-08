@@ -17,11 +17,9 @@ public class GameController : MonoBehaviour
   public List<GameObject> ai1CardsList = new List<GameObject>();
   public List<GameObject> ai2CardsList = new List<GameObject>();
   public static GameController instance;
-  public bool hasPacked = false;
 
   public CanvasGroup canvasSee;
   public CanvasGroup canvasSideShow;
-  public bool playerCardSeen = false;
   public CanvasGroup canvasPlayerPanel;
   public GameObject playerPanel;
 
@@ -30,14 +28,16 @@ public class GameController : MonoBehaviour
 
   public float fadeTime = 1f;
 
+  public Button packBtn;
+  public Button blindBtn;
   public Button seeBtn;
   public Button sideShowBtn;
+  public Button chaalBtn;
 
   public TMP_Text winnerText;
 
   public HandEvaluator.HandType ai1HandType;
   public HandEvaluator.HandType ai2HandType;
-  public MeController meController;
 
   private void Awake()
   {
@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
     playerPanel.GetComponent<CanvasGroup>().interactable = false;
     seeBtn.interactable = false;
     sideShowBtn.interactable = false;
+
   }
 
   IEnumerator WaitForCardLoading()
@@ -81,68 +82,46 @@ public class GameController : MonoBehaviour
         card.GetComponent<UICard>().Front_Cards.sprite = SpriteGame.instance.arr_Cards[i];
         listCard.Add(card);
     }
-    List<int> playerIndices = new List<int> { 3, 4, 5 };   // Indices for player
-    List<int> ai1Indices = new List<int> { 6, 7, 8 };     // Indices for AI1
-    List<int> ai2Indices = new List<int> { 12, 10, 14 };   // Indices for AI2
 
-    DistributeSpecificCardsToPlayers(playerIndices, ai1Indices, ai2Indices);
-    //DistributeCardsToPlayers();
+    DistributeCardsToPlayers();
   }
 
-  // private void DistributeCardsToPlayers()
-  // {
-  //   for (int i = 0; i < 3; i++)
-  //   {
-  //
-  //     int rdPlayer = Random.Range(0, listCard.Count);
-  //     playerCardsList.Add(listCard[rdPlayer]);
-  //     listCard.RemoveAt(rdPlayer);
-  //
-  //     int rdAI1 = Random.Range(0, listCard.Count);
-  //     ai1CardsList.Add(listCard[rdAI1]);
-  //     listCard.RemoveAt(rdAI1);
-  //
-  //     int rdAI2 = Random.Range(0, listCard.Count);
-  //     ai2CardsList.Add(listCard[rdAI2]);
-  //     listCard.RemoveAt(rdAI2);
-  //   }
-  //
-  //   StartCoroutine(SplitCards());
-  // }
-  private void DistributeSpecificCardsToPlayers(List<int> playerIndices, List<int> ai1Indices, List<int> ai2Indices)
-  {
-      foreach (int index in playerIndices)
-      {
-          playerCardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai1Indices)
-      {
-          ai1CardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai2Indices)
-      {
-          ai2CardsList.Add(listCard[index]);
-      }
-      StartCoroutine(SplitCards());
-  }
-
-
-  IEnumerator SplitCards()
+  private void DistributeCardsToPlayers()
   {
     for (int i = 0; i < 3; i++)
     {
+
+      int rdPlayer = Random.Range(0, listCard.Count);
+      playerCardsList.Add(listCard[rdPlayer]);
+      listCard.RemoveAt(rdPlayer);
+
+      int rdAI1 = Random.Range(0, listCard.Count);
+      ai1CardsList.Add(listCard[rdAI1]);
+      listCard.RemoveAt(rdAI1);
+
+      int rdAI2 = Random.Range(0, listCard.Count);
+      ai2CardsList.Add(listCard[rdAI2]);
+      listCard.RemoveAt(rdAI2);
+    }
+
+    StartCoroutine(SplitCards());
+  }
+
+  IEnumerator SplitCards()
+  {
+
+    for (int i = 0; i < 3; i++)
+    {
+      
       yield return new WaitForSeconds(0.5f);
-      gameGirl.SetActive(true);
       MoveCardToTransform(ai1CardsList[i], arr_Tf_AI1[i]);
-      gameGirl.SetActive(false);
       gameGirlSit.SetActive(true);
+      gameGirl.SetActive(false);
         
       yield return new WaitForSeconds(0.5f);
       MoveCardToTransform(playerCardsList[i], arr_Tf_player[i]);
-      gameGirl.SetActive(true);
       gameGirlSit.SetActive(false);
+      gameGirl.SetActive(true);
 
       yield return new WaitForSeconds(0.5f);
       MoveCardToTransform(ai2CardsList[i], arr_Tf_AI2[i]);
@@ -155,6 +134,8 @@ public class GameController : MonoBehaviour
     playerPanel.GetComponent<CanvasGroup>().interactable = true;
       
     canvasSee.DOFade(1, fadeTime);
+    canvasSideShow.DOFade(1, fadeTime);
+
   }
 
   private void MoveCardToTransform(GameObject card, Transform targetTransform)
@@ -169,46 +150,14 @@ public class GameController : MonoBehaviour
   public void RotatePlayerCard()
   {
     StartCoroutine(RotateCardsList(playerCardsList));
-    playerCardSeen = true;
   }
-    
+
   public void SideShowCard()
   {
     StartCoroutine(RotateCardsList(ai1CardsList));
-    HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
-    HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
-
-    if (ai1HandType > playerHandType)
-    {
-        PackCard(playerCardsList);
-        meController.UpdateMoneyText();
-
-    }
-    else if (playerHandType > ai1HandType)
-    {
-        PackCard(ai1CardsList);
-        meController.UpdateMoneyText();
-    }
-    else
-    {
-        // If hand types are equal, determine the highest card value
-        UICard ai1HighestCard = GetHighestCard(ai1CardsList);
-        UICard playerHighestCard = GetHighestCard(playerCardsList);
-
-        if (ai1HighestCard.value > playerHighestCard.value)
-        {
-            PackCard(playerCardsList);
-            meController.UpdateMoneyText();
-        }
-        else
-        {
-            PackCard(ai1CardsList);
-            meController.UpdateMoneyText();
-        }
-    }
   }
 
-  public IEnumerator RotateCardsList(List<GameObject> cardsList)
+  private IEnumerator RotateCardsList(List<GameObject> cardsList)
   {
     for (int i = 0; i < cardsList.Count; i++)
     {
@@ -224,19 +173,13 @@ public class GameController : MonoBehaviour
     }
   }
 
-  public void Pack()
+
+  public void PackCard()
   {
-      playerPanel.SetActive(false);
-      hasPacked = true;
-      PackCard(playerCardsList);
-  }
-    
-  public void PackCard(List<GameObject> cardsToPack)
-  {
-    StartCoroutine(PackCardsToDeck(cardsToPack));
+    StartCoroutine(PackCardsToDeck());
   }
 
-  private IEnumerator PackCardsToDeck(List<GameObject>cardsToPack)
+  private IEnumerator PackCardsToDeck()
   {
     canvasSee.DOFade(0, fadeTime);
     canvasSideShow.DOFade(0, fadeTime);
@@ -244,105 +187,119 @@ public class GameController : MonoBehaviour
     gameGirlSit.SetActive(false);
     gameGirl.SetActive(true);
 
-    yield return new WaitForSeconds(1.5f);
-    foreach (var card in cardsToPack)
+    for (int i = 0; i < 3; i++)
     {
         yield return new WaitForSeconds(0.5f);
-        MoveCardToTransform(card, tf_BoxCard);
+        MoveCardToTransform(playerCardsList[i], tf_BoxCard);
     }
 
     gameGirl.SetActive(false);
     gameGirlSit.SetActive(true);
-    // Clear the lists as the cards are now back in the deck.
-    //cardsToPack.Clear();
   }
 
   public void OnSettingsButtonClick()
   {
         SettingsUI.GetInstance().PanelIn();
   }
+
+  public void CardsLists(List<GameObject> cardsList)
+  {
+      foreach (var card in cardsList)
+      {
+          UICard uiCard = card.GetComponent<UICard>();
+          Debug.Log(uiCard.value);
+      }
+  }
+public void DetermineWinningHand()
+{
+    Debug.Log("determine wining");
+   
+    playerCardsList = HandEvaluator.Sorter.GetSortedCards(playerCardsList);
+    ai1CardsList = HandEvaluator.Sorter.GetSortedCards(ai1CardsList);
+    ai2CardsList = HandEvaluator.Sorter.GetSortedCards(ai2CardsList);
+
+
+
+    Debug.Log("ai1 card list"+ai1CardsList.Count);
+    Debug.Log("ai2 card list"+ai2CardsList.Count);
+    Debug.Log("player card list"+playerCardsList.Count);
+    HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
+    HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
+    HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
+
     
 
-    public void DetermineWinningHand()
+
+    if (playerHandType > ai1HandType && playerHandType > ai2HandType)
     {
-       
-        playerCardsList = HandEvaluator.Sorter.GetSortedCards(playerCardsList);
-        ai1CardsList = HandEvaluator.Sorter.GetSortedCards(ai1CardsList);
-        ai2CardsList = HandEvaluator.Sorter.GetSortedCards(ai2CardsList);
-
-        HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
-        HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
-        HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
-
-        if (playerHandType > ai1HandType && playerHandType > ai2HandType)
-        {
-         winnerText.text = "You Win : " + playerHandType;
-        }
-        else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
-        {
-            winnerText.text = "AI1 Wins : " + ai1HandType;
-        }
-        else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
-        {
-            winnerText.text = "AI2 Wins : " + ai2HandType;
-            
-        }
-        else
-        {
-            DetermineTieBreaker(playerCardsList, ai1CardsList, ai2CardsList);
-        }
+     winnerText.text = "You Win : " + playerHandType;
     }
-
-
-    private void DetermineTieBreaker(List<GameObject> playerCards, List<GameObject> ai1Cards, List<GameObject> ai2Cards)
+    else if (ai1HandType > playerHandType && ai1HandType > ai2HandType)
     {
-        UICard playerHighestCard = GetHighestCard(playerCards);
-        UICard ai1HighestCard = GetHighestCard(ai1Cards);
-        UICard ai2HighestCard = GetHighestCard(ai2Cards);
-
-        int highestValue = Mathf.Max(playerHighestCard.value, ai1HighestCard.value, ai2HighestCard.value);
-
-        // Check the winner based on the highest card value
-        if (playerHighestCard.value == highestValue)
-        {
-            winnerText.text = "You win : Highest Cards";
-        }
-        else if (ai1HighestCard.value == highestValue)
-        {
-            winnerText.text = "AI1 wins : Highest Cards";
-        }
-        else if (ai2HighestCard.value == highestValue)
-        {
-            winnerText.text = "AI2 wins : Highest Cards";
-        }
+        winnerText.text = "AI1 Wins : " + ai1HandType;
     }
-
-    private UICard GetHighestCard(List<GameObject> cards)
+    else if (ai2HandType > playerHandType && ai2HandType > ai1HandType)
     {
-        UICard highestCard = null;
-        foreach (var card in cards)
+        winnerText.text = "AI2 Wins : " + ai2HandType;
+        
+    }
+    else
+    {
+        DetermineTieBreaker(playerCardsList, ai1CardsList, ai2CardsList);
+    }
+}
+
+
+private void DetermineTieBreaker(List<GameObject> playerCards, List<GameObject> ai1Cards, List<GameObject> ai2Cards)
+{
+    UICard playerHighestCard = GetHighestCard(playerCards);
+    UICard ai1HighestCard = GetHighestCard(ai1Cards);
+    UICard ai2HighestCard = GetHighestCard(ai2Cards);
+
+    int highestValue = Mathf.Max(playerHighestCard.value, ai1HighestCard.value, ai2HighestCard.value);
+
+    // Check the winner based on the highest card value
+    if (playerHighestCard.value == highestValue)
+    {
+        winnerText.text = "You win : Highest Cards";
+    }
+    else if (ai1HighestCard.value == highestValue)
+    {
+        winnerText.text = "AI1 wins : Highest Cards";
+    }
+    else if (ai2HighestCard.value == highestValue)
+    {
+        winnerText.text = "AI2 wins : Highest Cards";
+    }
+}
+
+private UICard GetHighestCard(List<GameObject> cards)
+{
+    UICard highestCard = null;
+    foreach (var card in cards)
+    {
+        UICard uiCard = card.GetComponent<UICard>();
+        if (highestCard == null || uiCard.value > highestCard.value)
         {
-            UICard uiCard = card.GetComponent<UICard>();
-            if (highestCard == null || uiCard.value > highestCard.value)
+            highestCard = uiCard;
+        }
+        else if(uiCard.value == highestCard.value)
+        {
+            int nextCardIndex = (cards.IndexOf(card) + 1) % 3;
+            UICard nextCard = cards[nextCardIndex].GetComponent<UICard>();
+            if (nextCard.value > highestCard.value)
             {
-                highestCard = uiCard;
-            }
-            else if(uiCard.value == highestCard.value)
-            {
-                int nextCardIndex = (cards.IndexOf(card) + 1) % 3;
-                UICard nextCard = cards[nextCardIndex].GetComponent<UICard>();
-                if (nextCard.value > highestCard.value)
-                {
-                    highestCard = nextCard;
-                }
+                highestCard = nextCard;
             }
         }
-        return highestCard;
     }
+    return highestCard;
+}
 
   public void EndGame()
   {
     DetermineWinningHand();
+    Debug.Log("Game has ended");
   }
 
   public void RestartGame()
@@ -354,7 +311,6 @@ public class GameController : MonoBehaviour
   {
     yield return new WaitForSeconds(delayInSeconds);
 
-    // Restart the game after the delay
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
   }
 }

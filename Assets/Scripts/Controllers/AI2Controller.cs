@@ -57,17 +57,7 @@ public class AI2Controller : PlayerController
 
     private void seeCards()
     {
-        if (random < 50 && turn == 1)
-        {
-            isSeen = false;
-            PlaceBet();
-        }
-        else if( random < 30 && turn == 2) 
-        {
-            isSeen = false;
-            PlaceBet();
-        }
-        else if (random < 10 && turn == 3)
+        if (random < 60 && turn == 1 || random < 50 && turn == 2 || random < 30)
         {
             isSeen = false;
             PlaceBet();
