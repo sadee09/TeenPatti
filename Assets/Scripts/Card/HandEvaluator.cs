@@ -22,11 +22,6 @@ public static class HandEvaluator
         foreach (var card in cardsList)
         {
             UICard uiCard = card.GetComponent<UICard>();
-            if (uiCard.value == 0)
-            {
-                Debug.Log("here");
-            }
-
             Debug.Log("Card Value: " + uiCard.value + ", Suit: " + uiCard.suit);
         }
 

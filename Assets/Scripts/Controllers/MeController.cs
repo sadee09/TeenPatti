@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
+using JetBrains.Annotations;
 
 public class MeController : PlayerController
 {
@@ -17,12 +19,18 @@ public class MeController : PlayerController
     public GameObject activering;
     public Button seeBtn;
     public Button sideShowBtn;
+    public CanvasGroup canvasSideShow;
 
     private bool AddActive;
     private bool SubActive;
-    private bool seen;
+    public bool seen;
     private int TotalMoney;
     private MoneyManager moneyManager;
+
+    public GameController gameController;
+    public AI1Controller ai1Controller;
+    
+
 
     private void Awake()
     {
@@ -43,6 +51,7 @@ public class MeController : PlayerController
 
     void Start()
     {
+        gameController = FindObjectOfType<GameController>();
         // Disable the subtract button and set myText to 10
         subButton.SetActive(false);
         myText.text = 10.ToString();
@@ -87,6 +96,10 @@ public class MeController : PlayerController
     private void SeeButtonClicked()
     {
         seen = true;
+        if (ai1Controller.isSeen && ai1Controller.hasPacked == false)
+        {
+            canvasSideShow.DOFade(1, 1.0f);
+        }
 
         // Change the text of the blindButton when the "See" button is clicked
         blindButtonText.text = "Chal";
@@ -115,6 +128,16 @@ public class MeController : PlayerController
         gameManager.StartNextTurn();
     }
 
+    public void UpdateMoneyWhenShow()
+    {
+        int sourceMoney;
+        if (int.TryParse(myText.text, out sourceMoney))
+        {
+            // Call the Add method of MoneyManager to update the total money
+            MoneyManager.instance.UpdateTotalMoney(sourceMoney);
+        }
+    }
+
     // Method to activate the packButton
     public void PackButton()
     {
@@ -135,11 +158,31 @@ public class MeController : PlayerController
                 card.SetActive(false);
             }
         }
-
+        canvasSideShow.DOFade(1, 1.0f);
         // Ends the player's turn
         gameManager.StartNextTurn();
 
         gameManager.PlayerPack();
+    }
+
+    public void OnShow()
+    {
+        seeBtn.gameObject.SetActive(false);
+        sideShowBtn.gameObject.SetActive(false);
+        StartCoroutine(gameController.RotateCardsList(gameController.playerCardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai1CardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai2CardsList));
+        UpdateMoneyWhenShow();
+        StartCoroutine(WinnerText());
+        gameController.RestartGame();
+    }
+    
+
+    private IEnumerator WinnerText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        gameController.DetermineWinningHand();
+        Panel.SetActive(false);
     }
 
     public override void StartTurn()

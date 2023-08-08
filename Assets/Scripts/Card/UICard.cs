@@ -9,6 +9,7 @@ public class UICard : MonoBehaviour
     public GameObject gob_BackCard;
     public int value; 
     public SuitType suit; // Add this property to represent the suit of the card
+    string suitPart;
 
     public enum SuitType
     {
@@ -21,27 +22,6 @@ public class UICard : MonoBehaviour
   void Start()
   {
       string str = Front_Cards.sprite.name;
-
-      // Extract the suit part of the sprite name after the "_"
-      int underscoreIndex = str.IndexOf('_') ;
-      string suitPart = str.Substring(underscoreIndex + 1, str.Length - underscoreIndex - 2);
-
-      // Handle the suit type
-      switch (suitPart)
-      {
-          case "spades":
-              suit = SuitType.Spades;
-              break;
-          case "hearts":
-              suit = SuitType.Hearts;
-              break;
-          case "clubs":
-              suit = SuitType.Clubs;
-              break;
-          case "diamonds":
-              suit = SuitType.Diamonds;
-              break;
-      }
       // Check if the last two characters are digits (0-9) to handle numeric values (e.g., "10")
       if (str.Length >= 2 && char.IsDigit(str[str.Length - 1]) && char.IsDigit(str[str.Length - 2]))
       {
@@ -75,6 +55,36 @@ public class UICard : MonoBehaviour
                   }
                   break;
           }
+      }
+      
+
+      // Extract the suit part of the sprite name after the "_"
+      int underscoreIndex = str.IndexOf('_') ;
+   
+      if (value == 10)
+      {
+          suitPart = str.Substring(underscoreIndex + 1, str.Length - underscoreIndex - 3).ToLower();
+      }
+      else
+      {
+          suitPart = str.Substring(underscoreIndex + 1,str.Length - underscoreIndex - 2).ToLower();
+      }
+
+      // Handle the suit type
+      switch (suitPart)
+      {
+          case "spades":
+              suit = SuitType.Spades;
+              break;
+          case "hearts":
+              suit = SuitType.Hearts;
+              break;
+          case "clubs":
+              suit = SuitType.Clubs;
+              break;
+          case "diamonds":
+              suit = SuitType.Diamonds;
+              break;
       }
   }
 }

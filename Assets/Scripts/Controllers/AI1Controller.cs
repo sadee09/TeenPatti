@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class AI1Controller : PlayerController
 {
@@ -12,13 +13,19 @@ public class AI1Controller : PlayerController
     private int currentBet = 0;
     private int lastBet = 0;
     private int turn = 0;
-    private bool isSeen;
+    public bool isSeen;
+    public bool hasPacked = false;
+    
     private int random;
     private MoneyManager moneyManager;
-    private GameController gameController;
+    public static AI1Controller instance;
+    
+    public Button showBtn;
+    public CanvasGroup canvasSideShow;
 
     private void Awake()
     {
+        instance = this;
         gameManager = FindObjectOfType<PlayerManager>();
         if (gameManager == null)
         {
@@ -71,6 +78,16 @@ public class AI1Controller : PlayerController
         else
         {
             isSeen = true;
+            if (AI2Controller.instance.isSeen)
+            {
+                showBtn.gameObject.SetActive(true);
+            }
+
+            else if (GameController.instance.playerCardSeen && GameController.instance.hasPacked == false)
+            {
+                canvasSideShow.DOFade(1, 1.0f);
+            }
+            
             CardsEvaluator();
         }
     }
@@ -171,6 +188,7 @@ public class AI1Controller : PlayerController
 
     public void Pack()
     {
+        hasPacked = true;
         Debug.Log("Pack");
 
         if (GameController.instance != null)
@@ -180,6 +198,8 @@ public class AI1Controller : PlayerController
                 card.SetActive(false);
             }
         }
+        canvasSideShow.DOFade(0, 1.0f);
+
         gameManager.StartNextTurn();
 
         gameManager.PlayerPack();
@@ -195,7 +215,7 @@ public class AI1Controller : PlayerController
     {
         if (betText != null)
             betText.text = currentBet.ToString();
-            MoneyManager.instance.UpdateTotalMoney(currentBet);
+        MoneyManager.instance.UpdateTotalMoney(currentBet);
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();

@@ -12,13 +12,17 @@ public class AI2Controller : PlayerController
     private int currentBet = 0;
     private int lastBet = 0;
     private int turn = 0;
-    private bool isSeen;
+    public bool isSeen;
     private int random;
     private MoneyManager moneyManager;
     private GameController gameController;
+    public static AI2Controller instance;
+    
+    public Button showBtn;
 
     private void Awake()
     {
+        instance = this;
         gameManager = FindObjectOfType<PlayerManager>();
         if (gameManager == null)
         {
@@ -71,6 +75,10 @@ public class AI2Controller : PlayerController
         else
         {
             isSeen = true;
+            if (AI1Controller.instance.isSeen)
+            {
+                showBtn.gameObject.SetActive(true); 
+            }
             CardsEvaluator();
         }
     }
@@ -195,7 +203,7 @@ public class AI2Controller : PlayerController
     {
         if (betText != null)
             betText.text = currentBet.ToString();
-            MoneyManager.instance.UpdateTotalMoney(currentBet);
+        MoneyManager.instance.UpdateTotalMoney(currentBet);
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();
