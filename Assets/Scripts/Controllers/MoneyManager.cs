@@ -4,8 +4,11 @@ using TMPro;
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager instance;
-    public TextMeshProUGUI Total;
-
+    public TMP_Text Total;
+    public TMP_Text playerMoney;
+    public TMP_Text ai1Money;
+    public TMP_Text ai2Money;
+    
     private int totalMoney = 0; // Store the total money in an int variable
 
     private void Awake()
@@ -29,6 +32,6 @@ public class MoneyManager : MonoBehaviour
 
     public void MoneyPot()
     {
-        
+
     }
 }

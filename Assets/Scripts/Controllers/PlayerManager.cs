@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
 
             if (players.Count == 1)
             {
-                GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
+                GameController.instance.winnerText.text = players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
                 gameController.RestartGame();

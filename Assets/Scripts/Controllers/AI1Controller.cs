@@ -94,7 +94,7 @@ public class AI1Controller : PlayerController
         {
             if (GameController.instance.ai1HandType == HandEvaluator.HandType.HighCard)
             {
-                if ((random < 100 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
+                if ((random < 60 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
                 {
                     PlaceBet();
                 }
