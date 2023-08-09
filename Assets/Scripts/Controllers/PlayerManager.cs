@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    private List<PlayerController> players = new List<PlayerController>();
+    public List<PlayerController> players = new List<PlayerController>();
     private int currentPlayerIndex = 1;
     private bool gameStarted = false;
     public GameController gameController;
+    public PlayerController ai1Controller;
 
     void Start()
     {
@@ -45,11 +46,47 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerController removedPlayer = players[i];
             players.RemoveAt(i);
-
             currentPlayerIndex = i % players.Count;
 
             if (players.Count == 1)
             {
+                GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
+                players[currentPlayerIndex].EndTurn();
+                gameController.EndGame();
+                gameController.RestartGame();
+            }
+        }
+    }
+
+    public void PlayerPack(int currentPlayerIndex)
+    {
+        int i = currentPlayerIndex - 1;
+        int index = 0;
+        foreach(PlayerController player in players)
+        {
+            if (player == ai1Controller)
+            {
+                i = index;
+            }
+            index++;
+        }
+        
+        if (i < 0)
+        {
+            i = players.Count - 1;
+        }
+
+        if (i >= 0 && i < players.Count)
+        {
+            PlayerController removedPlayer = players[i];
+            players.RemoveAt(i);
+            currentPlayerIndex = i % players.Count;
+
+            if (players.Count == 1)
+            {
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
                 GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();

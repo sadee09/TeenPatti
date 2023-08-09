@@ -2350,6 +2350,7 @@ MonoBehaviour:
   meController: {fileID: 1083790436}
   ai1Controller: {fileID: 2098102041}
   ai2Controller: {fileID: 1976427266}
+  playerManager: {fileID: 1131575123}
 --- !u!1 &678842066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,7 +2387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 90.6}
+  m_AnchoredPosition: {x: 47, y: 101}
   m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678842069
@@ -4449,7 +4450,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39b561ccc2ef4eb0b49a23d87bfbcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
   gameController: {fileID: 548992964}
+  ai1Controller: {fileID: 2098102041}
 --- !u!4 &1131575124
 Transform:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
   public MeController meController;
   public AI1Controller ai1Controller;
   public AI2Controller ai2Controller;
+  public PlayerManager playerManager;
 
   private void Awake()
   {
@@ -175,19 +176,26 @@ public class GameController : MonoBehaviour
     HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
     HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
 
+    Debug.Log(ai1HandType);
+    Debug.Log(playerHandType);
+
     if (ai1HandType > playerHandType)
     {
+      Debug.Log("AI1 has higher cards");
         PackCard(playerCardsList);
         meController.UpdateMoneyText();
-
+        playerManager.PlayerPack();
     }
     else if (playerHandType > ai1HandType)
     {
+      Debug.Log("Player has higher cards");
         PackCard(ai1CardsList);
         meController.UpdateMoneyText();
+        playerManager.PlayerPack(1);
     }
     else
     {
+      Debug.Log("else block is running");
         // If hand types are equal, determine the highest card value
         UICard ai1HighestCard = GetHighestCard(ai1CardsList);
         UICard playerHighestCard = GetHighestCard(playerCardsList);
@@ -196,11 +204,13 @@ public class GameController : MonoBehaviour
         {
             PackCard(playerCardsList);
             meController.UpdateMoneyText();
+            playerManager.PlayerPack();
         }
         else
         {
             PackCard(ai1CardsList);
             meController.UpdateMoneyText();
+            playerManager.PlayerPack(1);
         }
     }
   }
