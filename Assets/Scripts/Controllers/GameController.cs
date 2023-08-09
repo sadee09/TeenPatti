@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Build.Content;
 using UnityEngine.SceneManagement;
 
 
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour
   public MeController meController;
   public AI1Controller ai1Controller;
   public AI2Controller ai2Controller;
+  public PlayerManager gameManager;
 
   private void Awake()
   {
@@ -106,26 +108,6 @@ public class GameController : MonoBehaviour
   
     StartCoroutine(SplitCards());
   }
-  private void DistributeSpecificCardsToPlayers(List<int> playerIndices, List<int> ai1Indices, List<int> ai2Indices)
-  {
-      foreach (int index in playerIndices)
-      {
-          playerCardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai1Indices)
-      {
-          ai1CardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai2Indices)
-      {
-          ai2CardsList.Add(listCard[index]);
-      }
-      StartCoroutine(SplitCards());
-  }
-
-
   IEnumerator SplitCards()
   {
     for (int i = 0; i < 3; i++)
@@ -179,12 +161,14 @@ public class GameController : MonoBehaviour
     {
         PackCard(playerCardsList);
         meController.UpdateMoneyText();
+        gameManager.PlayerPack();
 
     }
     else if (playerHandType > ai1HandType)
     {
         PackCard(ai1CardsList);
         meController.UpdateMoneyText();
+        
     }
     else
     {
@@ -196,11 +180,14 @@ public class GameController : MonoBehaviour
         {
             PackCard(playerCardsList);
             meController.UpdateMoneyText();
+            gameManager.PlayerPack();
+            
         }
         else
         {
             PackCard(ai1CardsList);
             meController.UpdateMoneyText();
+            
         }
     }
   }
