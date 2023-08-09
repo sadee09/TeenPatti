@@ -14,6 +14,7 @@ public class AI1Controller : PlayerController
     private int lastBet = 0;
     private int turn = 0;
     public bool isSeen;
+    public GameObject Seen;
     public bool hasPacked = false;
     public static AI1Controller instance;
     
@@ -81,6 +82,7 @@ public class AI1Controller : PlayerController
         else
         {
             isSeen = true;
+            Seen.gameObject.SetActive(true);
             if (AI2Controller.instance.isSeen)
             {
                 showBtn.gameObject.SetActive(true);
