@@ -61,7 +61,7 @@ public class AI2Controller : PlayerController
 
     private void seeCards()
     {
-        if (random < 1 && turn == 1 || random < 20 && turn == 2 || random < 10)
+        if (random < 60 && turn == 1 || random < 40 && turn == 2 || random < 30)
         {
             isSeen = false;
             PlaceBet();
@@ -82,43 +82,39 @@ public class AI2Controller : PlayerController
     {
         if (isSeen)
         {
-            if (GameController.instance.ai2HandType == HandEvaluator.HandType.HighCard)
+            if (gameController.ai2HandType == HandEvaluator.HandType.HighCard)
             {
                 if ((random < 60 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else 
                 {
                     Pack();
                 }
             }
-            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Pair)
+            else if (gameController.ai2HandType == HandEvaluator.HandType.Pair)
             {
                 if ((random < 95 && turn == 1) || (random < 90 && turn == 2) || (random < 80))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
                     Pack();
                 }
             }
-            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Color)
+            else if (gameController.ai2HandType == HandEvaluator.HandType.Color)
             {
                 Debug.Log("AI2 show");
                 if ((random < 100 && turn == 1) || (random < 95 && turn == 2) || (random < 85))
@@ -126,66 +122,58 @@ public class AI2Controller : PlayerController
                     Debug.Log("AI2 show");
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
                     Pack();
                 }
             }
-            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Sequence)
+            else if (gameController.ai2HandType == HandEvaluator.HandType.Sequence)
             {
                 if ((random < 100 && turn == 1) || (random < 98 && turn == 2) || (random < 95))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
                     Pack();
                 }
             }
-            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.PureSequence)
+            else if (gameController.ai2HandType == HandEvaluator.HandType.PureSequence)
             {
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 95))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
                     Pack();
                 }
             }
-            else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Trail)
+            else if (gameController.ai2HandType == HandEvaluator.HandType.Trail)
             {
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 98))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -219,11 +207,12 @@ public class AI2Controller : PlayerController
     public void Pack()
     {
         hasPacked = true;
+        Seen.gameObject.SetActive(false);
         Debug.Log("Pack");
 
         if (GameController.instance != null)
         {
-            foreach (GameObject card in GameController.instance.ai2CardsList)
+            foreach (GameObject card in gameController.ai2CardsList)
             {
                 card.SetActive(false);
             }

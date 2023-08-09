@@ -83,12 +83,13 @@ public class AI1Controller : PlayerController
         {
             isSeen = true;
             Seen.gameObject.SetActive(true);
-            if (AI2Controller.instance.isSeen)
+            
+            if (aI2Controller.isSeen)
             {
                 showBtn.gameObject.SetActive(true);
             }
 
-            else if (GameController.instance.playerCardSeen && GameController.instance.hasPacked == false)
+            else if (gameController.playerCardSeen && gameController.hasPacked == false)
             {
                 canvasSideShow.DOFade(1, 1.0f);
             }
@@ -103,16 +104,14 @@ public class AI1Controller : PlayerController
         {
             if (GameController.instance.ai1HandType == HandEvaluator.HandType.HighCard)
             {
-                if ((random < 60 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
+                if ((random < 100 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else 
                 {
@@ -125,12 +124,10 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -143,12 +140,10 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -161,12 +156,10 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -179,12 +172,10 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -197,12 +188,10 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (isSeen)
+                else if (aI2Controller.isSeen && gameController.playerCardSeen)
                 {
-                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
-                    {
-                        OnShow();
-                    }
+                    Debug.Log("inside the on show thing");
+                    OnShow();
                 }
                 else
                 {
@@ -236,6 +225,7 @@ public class AI1Controller : PlayerController
     public void Pack()
     {
         hasPacked = true;
+        Seen.gameObject.SetActive(false);
         Debug.Log("Pack");
 
         if (GameController.instance != null)

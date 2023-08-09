@@ -2386,7 +2386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 142, y: -18.766846}
+  m_AnchoredPosition: {x: 50, y: 90.6}
   m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678842069
@@ -6829,7 +6829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -47.300003, y: -20.766846}
+  m_AnchoredPosition: {x: 49, y: 93.1}
   m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895485285
@@ -7076,6 +7076,8 @@ MonoBehaviour:
   isSeen: 0
   Seen: {fileID: 1895485282}
   hasPacked: 0
+  gameController: {fileID: 548992964}
+  aI1Controller: {fileID: 2098102041}
   showBtn: {fileID: 689511127}
 --- !u!4 &1976427267
 Transform:
@@ -7454,6 +7456,8 @@ MonoBehaviour:
   hasPacked: 0
   showBtn: {fileID: 689511127}
   canvasSideShow: {fileID: 540786286}
+  gameController: {fileID: 548992964}
+  aI2Controller: {fileID: 1976427266}
 --- !u!4 &2098102042
 Transform:
   m_ObjectHideFlags: 0

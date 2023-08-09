@@ -34,7 +34,6 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerPack()
     {
-        Debug.Log("removed from the list");
         int i = currentPlayerIndex - 1;
 
         if (i < 0)

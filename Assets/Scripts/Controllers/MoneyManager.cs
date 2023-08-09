@@ -26,4 +26,9 @@ public class MoneyManager : MonoBehaviour
         totalMoney += amount;
         Total.text = totalMoney.ToString();
     }
+
+    public void MoneyPot()
+    {
+        
+    }
 }
