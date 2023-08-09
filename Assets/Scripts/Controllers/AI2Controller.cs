@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class AI2Controller : PlayerController
@@ -13,6 +14,8 @@ public class AI2Controller : PlayerController
     private int lastBet = 0;
     private int turn = 0;
     public bool isSeen;
+    public GameObject Seen;
+    public bool hasPacked = false;
     private int random;
     private MoneyManager moneyManager;
     private GameController gameController;
@@ -75,6 +78,7 @@ public class AI2Controller : PlayerController
         else
         {
             isSeen = true;
+            Seen.gameObject.SetActive(true);
             if (AI1Controller.instance.isSeen)
             {
                 showBtn.gameObject.SetActive(true); 
@@ -179,6 +183,7 @@ public class AI2Controller : PlayerController
 
     public void Pack()
     {
+        hasPacked = true;
         Debug.Log("Pack");
 
         if (GameController.instance != null)

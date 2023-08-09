@@ -13,7 +13,6 @@ public class PlayerManager : MonoBehaviour
     {
         StartGame();
     }
-
     public void AddPlayer(PlayerController player)
     {
         players.Add(player);
