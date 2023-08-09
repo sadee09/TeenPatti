@@ -15,13 +15,16 @@ public class AI1Controller : PlayerController
     private int turn = 0;
     public bool isSeen;
     public bool hasPacked = false;
+    public static AI1Controller instance;
     
     private int random;
     private MoneyManager moneyManager;
-    public static AI1Controller instance;
     
     public Button showBtn;
     public CanvasGroup canvasSideShow;
+
+    public GameController gameController;
+    public AI2Controller aI2Controller;
 
     private void Awake()
     {
@@ -102,6 +105,13 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else 
                 {
                     Pack();
@@ -112,6 +122,13 @@ public class AI1Controller : PlayerController
                 if ((random < 95 && turn == 1) || (random < 90 && turn == 2) || (random < 80))
                 {
                     PlaceBet();
+                }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
                 }
                 else
                 {
@@ -124,6 +141,13 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else
                 {
                     Pack();
@@ -134,6 +158,13 @@ public class AI1Controller : PlayerController
                 if ((random < 100 && turn == 1) || (random < 98 && turn == 2) || (random < 95))
                 {
                     PlaceBet();
+                }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
                 }
                 else
                 {
@@ -146,6 +177,13 @@ public class AI1Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else
                 {
                     Pack();
@@ -156,6 +194,13 @@ public class AI1Controller : PlayerController
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 98))
                 {
                     PlaceBet();
+                }
+                else if (isSeen)
+                {
+                    if (aI2Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
                 }
                 else
                 {
@@ -219,5 +264,22 @@ public class AI1Controller : PlayerController
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();
+    }
+
+    private IEnumerator WinnerText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        gameController.DetermineWinningHand();
+    }
+
+    public void OnShow()
+    {
+        StartCoroutine(gameController.RotateCardsList(gameController.playerCardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai1CardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai2CardsList));
+        PlaceBet();
+        gameManager.StartNextTurn();
+        StartCoroutine(WinnerText());
+        gameController.RestartGame();
     }
 }

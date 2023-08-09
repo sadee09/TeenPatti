@@ -4217,6 +4217,7 @@ MonoBehaviour:
   canvasSideShow: {fileID: 540786286}
   seen: 0
   gameController: {fileID: 548992964}
+  ai1Controller: {fileID: 2098102041}
 --- !u!1 &1121208234
 GameObject:
   m_ObjectHideFlags: 0

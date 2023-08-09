@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
   public HandEvaluator.HandType ai1HandType;
   public HandEvaluator.HandType ai2HandType;
   public MeController meController;
+  public PlayerManager gameManager;
 
   private void Awake()
   {
@@ -81,53 +82,29 @@ public class GameController : MonoBehaviour
         card.GetComponent<UICard>().Front_Cards.sprite = SpriteGame.instance.arr_Cards[i];
         listCard.Add(card);
     }
-    List<int> playerIndices = new List<int> { 3, 4, 5 };   // Indices for player
-    List<int> ai1Indices = new List<int> { 6, 7, 8 };     // Indices for AI1
-    List<int> ai2Indices = new List<int> { 12, 10, 14 };   // Indices for AI2
-
-    DistributeSpecificCardsToPlayers(playerIndices, ai1Indices, ai2Indices);
-    //DistributeCardsToPlayers();
+    DistributeCardsToPlayers();
   }
 
-  // private void DistributeCardsToPlayers()
-  // {
-  //   for (int i = 0; i < 3; i++)
-  //   {
-  //
-  //     int rdPlayer = Random.Range(0, listCard.Count);
-  //     playerCardsList.Add(listCard[rdPlayer]);
-  //     listCard.RemoveAt(rdPlayer);
-  //
-  //     int rdAI1 = Random.Range(0, listCard.Count);
-  //     ai1CardsList.Add(listCard[rdAI1]);
-  //     listCard.RemoveAt(rdAI1);
-  //
-  //     int rdAI2 = Random.Range(0, listCard.Count);
-  //     ai2CardsList.Add(listCard[rdAI2]);
-  //     listCard.RemoveAt(rdAI2);
-  //   }
-  //
-  //   StartCoroutine(SplitCards());
-  // }
-  private void DistributeSpecificCardsToPlayers(List<int> playerIndices, List<int> ai1Indices, List<int> ai2Indices)
+ private void DistributeCardsToPlayers()
   {
-      foreach (int index in playerIndices)
-      {
-          playerCardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai1Indices)
-      {
-          ai1CardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai2Indices)
-      {
-          ai2CardsList.Add(listCard[index]);
-      }
-      StartCoroutine(SplitCards());
+    for (int i = 0; i < 3; i++)
+    {
+  
+      int rdPlayer = Random.Range(0, listCard.Count);
+      playerCardsList.Add(listCard[rdPlayer]);
+      listCard.RemoveAt(rdPlayer);
+  
+      int rdAI1 = Random.Range(0, listCard.Count);
+      ai1CardsList.Add(listCard[rdAI1]);
+      listCard.RemoveAt(rdAI1);
+  
+      int rdAI2 = Random.Range(0, listCard.Count);
+      ai2CardsList.Add(listCard[rdAI2]);
+      listCard.RemoveAt(rdAI2);
+    }
+  
+    StartCoroutine(SplitCards());
   }
-
 
   IEnumerator SplitCards()
   {
@@ -182,12 +159,13 @@ public class GameController : MonoBehaviour
     {
         PackCard(playerCardsList);
         meController.UpdateMoneyText();
-
+        gameManager.PlayerPack();
     }
     else if (playerHandType > ai1HandType)
     {
         PackCard(ai1CardsList);
         meController.UpdateMoneyText();
+        gameManager.PlayerPack();
     }
     else
     {
@@ -199,11 +177,13 @@ public class GameController : MonoBehaviour
         {
             PackCard(playerCardsList);
             meController.UpdateMoneyText();
+            gameManager.PlayerPack();
         }
         else
         {
             PackCard(ai1CardsList);
             meController.UpdateMoneyText();
+            gameManager.PlayerPack();
         }
     }
   }
@@ -253,8 +233,6 @@ public class GameController : MonoBehaviour
 
     gameGirl.SetActive(false);
     gameGirlSit.SetActive(true);
-    // Clear the lists as the cards are now back in the deck.
-    //cardsToPack.Clear();
   }
 
   public void OnSettingsButtonClick()
@@ -342,7 +320,7 @@ public class GameController : MonoBehaviour
 
   public void EndGame()
   {
-    DetermineWinningHand();
+    RestartGame();
   }
 
   public void RestartGame()

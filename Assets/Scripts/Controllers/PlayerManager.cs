@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerPack()
     {
+        Debug.Log("removed from the list");
         int i = currentPlayerIndex - 1;
 
         if (i < 0)
@@ -51,6 +52,7 @@ public class PlayerManager : MonoBehaviour
 
             if (players.Count == 1)
             {
+                GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
                 gameController.RestartGame();

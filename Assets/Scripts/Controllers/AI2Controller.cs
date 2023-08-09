@@ -15,8 +15,9 @@ public class AI2Controller : PlayerController
     public bool isSeen;
     private int random;
     private MoneyManager moneyManager;
-    private GameController gameController;
+    public GameController gameController;
     public static AI2Controller instance;
+    public AI1Controller aI1Controller;
     
     public Button showBtn;
 
@@ -57,7 +58,7 @@ public class AI2Controller : PlayerController
 
     private void seeCards()
     {
-        if (random < 60 && turn == 1 || random < 50 && turn == 2 || random < 30)
+        if (random < 1 && turn == 1 || random < 20 && turn == 2 || random < 10)
         {
             isSeen = false;
             PlaceBet();
@@ -83,6 +84,13 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else 
                 {
                     Pack();
@@ -94,6 +102,13 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else
                 {
                     Pack();
@@ -101,9 +116,18 @@ public class AI2Controller : PlayerController
             }
             else if (GameController.instance.ai2HandType == HandEvaluator.HandType.Color)
             {
+                Debug.Log("AI2 show");
                 if ((random < 100 && turn == 1) || (random < 95 && turn == 2) || (random < 85))
                 {
+                    Debug.Log("AI2 show");
                     PlaceBet();
+                }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
                 }
                 else
                 {
@@ -116,6 +140,13 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else
                 {
                     Pack();
@@ -127,6 +158,13 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
+                }
                 else
                 {
                     Pack();
@@ -137,6 +175,13 @@ public class AI2Controller : PlayerController
                 if ((random < 100 && turn == 1) || (random < 100 && turn == 2) || (random < 98))
                 {
                     PlaceBet();
+                }
+                else if (isSeen)
+                {
+                    if (aI1Controller.isSeen && gameController.playerCardSeen) 
+                    {
+                        OnShow();
+                    }
                 }
                 else
                 {
@@ -197,5 +242,22 @@ public class AI2Controller : PlayerController
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();
+    }
+
+    private IEnumerator WinnerText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        gameController.DetermineWinningHand();
+    }
+
+    public void OnShow()
+    {
+        StartCoroutine(gameController.RotateCardsList(gameController.playerCardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai1CardsList));
+        StartCoroutine(gameController.RotateCardsList(gameController.ai2CardsList));
+        PlaceBet();
+        gameManager.StartNextTurn();
+        StartCoroutine(WinnerText());
+        gameController.RestartGame();
     }
 }

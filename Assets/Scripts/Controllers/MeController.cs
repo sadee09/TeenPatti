@@ -29,6 +29,7 @@ public class MeController : PlayerController
 
     public GameController gameController;
     public AI1Controller ai1Controller;
+    public static MeController instance;
     
 
 
