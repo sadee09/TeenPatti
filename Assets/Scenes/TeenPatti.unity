@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -3134,6 +3134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Total: {fileID: 989491502}
+  playerMoney: {fileID: 271149485}
+  ai1Money: {fileID: 1408426471}
+  ai2Money: {fileID: 1920702362}
+  totalMoney: 0
 --- !u!4 &731604627
 Transform:
   m_ObjectHideFlags: 0
@@ -4013,7 +4017,6 @@ GameObject:
   - component: {fileID: 989491501}
   - component: {fileID: 989491503}
   - component: {fileID: 989491502}
-  - component: {fileID: 989491504}
   m_Layer: 5
   m_Name: TotalMoney
   m_TagString: Untagged
@@ -4138,18 +4141,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989491500}
   m_CullTransparentMesh: 1
---- !u!114 &989491504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989491500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5fc50f76f28440197f52012ab9f18c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1014582389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4502,13 +4493,13 @@ MonoBehaviour:
   Panel: {fileID: 1083790429}
   addButton: {fileID: 101884274}
   subButton: {fileID: 165127546}
-  total: {fileID: 989491502}
   packButton: {fileID: 1839591011}
   activering: {fileID: 166613722}
   seeBtn: {fileID: 696763404}
   sideShowBtn: {fileID: 540786285}
   canvasSideShow: {fileID: 540786286}
   seen: 0
+  total: {fileID: 271149485}
   gameController: {fileID: 548992964}
   ai1Controller: {fileID: 2098102041}
 --- !u!1 &1121208234
@@ -7289,9 +7280,11 @@ MonoBehaviour:
   betText: {fileID: 989491502}
   moneyText: {fileID: 1920702362}
   activering: {fileID: 1858387094}
+  totalMoney: 0
   isSeen: 0
   Seen: {fileID: 1895485282}
   hasPacked: 0
+  moneyManager: {fileID: 731604626}
   gameController: {fileID: 548992964}
   aI1Controller: {fileID: 2098102041}
   showBtn: {fileID: 689511127}

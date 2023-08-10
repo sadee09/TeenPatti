@@ -194,12 +194,10 @@ public class AI1Controller : PlayerController
     {
         if (lastBet == 0)
         {
-            // If it's the first bet, choose randomly between 10 and 20
             currentBet = Random.Range(0, 2) == 0 ? 10 : 20;
         }
         else
         {
-            // If it's not the first bet, double the last bet
             currentBet = lastBet * 2;
         }
 

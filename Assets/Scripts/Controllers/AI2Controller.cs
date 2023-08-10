@@ -9,7 +9,7 @@ public class AI2Controller : PlayerController
     [SerializeField] private TextMeshProUGUI betText;
     [SerializeField] private TextMeshProUGUI moneyText;
     public GameObject activering;
-    private int totalMoney = 10000;
+    public int totalMoney;
     private int currentBet = 0;
     private int lastBet = 0;
     private int turn = 0;
@@ -17,7 +17,7 @@ public class AI2Controller : PlayerController
     public GameObject Seen;
     public bool hasPacked = false;
     private int random;
-    private MoneyManager moneyManager;
+    public MoneyManager moneyManager;
     public GameController gameController;
     public static AI2Controller instance;
     public AI1Controller aI1Controller;
@@ -36,6 +36,11 @@ public class AI2Controller : PlayerController
         {
             gameManager.AddPlayer(this);
         }
+    }
+
+    public void Start()
+    {
+        
     }
 
     private IEnumerator PerformAITurn()
@@ -229,7 +234,7 @@ public class AI2Controller : PlayerController
     {
         if (betText != null)
             betText.text = currentBet.ToString();
-        MoneyManager.instance.UpdateTotalMoney(currentBet);
+            MoneyManager.instance.UpdateTotalMoney(currentBet);
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();
