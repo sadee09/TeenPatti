@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
   public AI2Controller ai2Controller;
   public PlayerManager playerManager;
 
+  public static string playerMoneyKey = "PlayerMoney";
   private Dictionary<string, System.Action<int>> moneyUpdateMethods = new Dictionary<string, System.Action<int>>();
   private void Awake()
   {
@@ -108,24 +109,6 @@ public class GameController : MonoBehaviour
     }
   
     StartCoroutine(SplitCards());
-  }
-  private void DistributeSpecificCardsToPlayers(List<int> playerIndices, List<int> ai1Indices, List<int> ai2Indices)
-  {
-      foreach (int index in playerIndices)
-      {
-          playerCardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai1Indices)
-      {
-          ai1CardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai2Indices)
-      {
-          ai2CardsList.Add(listCard[index]);
-      }
-      StartCoroutine(SplitCards());
   }
 
 

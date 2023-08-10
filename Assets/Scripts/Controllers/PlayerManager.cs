@@ -89,13 +89,23 @@ public class PlayerManager : MonoBehaviour
             if (players.Count == 1)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
 =======
+=======
+<<<<<<< Updated upstream
+>>>>>>> 99da49b (Resolve merge conflict in PlayerManager.cs)
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
                 GameController.instance.winnerText.text =  players[0].gameObject.name + " Wins!";
+<<<<<<< HEAD
 >>>>>>> a9d7ce9 (Latest Aug10 Update 11:09)
+=======
+=======
+                GameController.instance.winnerText.text = players[0].gameObject.name + " Wins!";
+>>>>>>> Stashed changes
+>>>>>>> 99da49b (Resolve merge conflict in PlayerManager.cs)
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
                 gameController.RestartGame();
