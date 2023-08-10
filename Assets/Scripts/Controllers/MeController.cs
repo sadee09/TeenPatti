@@ -10,26 +10,25 @@ public class MeController : PlayerController
     public Button seeButton;
     public TMP_Text blindButtonText;
     public TextMeshProUGUI myText;
+    private int totalMoney = 10000;
+    private int currentBet = 0;
     public GameObject Blindbutton;
     public GameObject Panel;
     public GameObject addButton;
     public GameObject subButton;
-    public TextMeshProUGUI total;
     public GameObject packButton;
     public GameObject activering;
     public Button seeBtn;
     public Button sideShowBtn;
     public CanvasGroup canvasSideShow;
-
     private bool AddActive;
     private bool SubActive;
     public bool seen;
-    private int TotalMoney;
-    private MoneyManager moneyManager;
-
+    public TextMeshProUGUI total;
     public GameController gameController;
     public AI1Controller ai1Controller;
     public static MeController instance;
+    private int currentValue;
     
 
 
@@ -56,6 +55,7 @@ public class MeController : PlayerController
         // Disable the subtract button and set myText to 10
         subButton.SetActive(false);
         myText.text = 10.ToString();
+        total.text = totalMoney.ToString();
 
         // Set the packButton to initially inactive
         packButton.SetActive(false);
@@ -106,7 +106,6 @@ public class MeController : PlayerController
         blindButtonText.text = "Chal";
 
         // Double the value displayed in myText
-        int currentValue;
         if (int.TryParse(myText.text, out currentValue))
         {
             myText.text = (currentValue * 2).ToString();
@@ -122,6 +121,8 @@ public class MeController : PlayerController
         int sourceMoney;
         if (int.TryParse(myText.text, out sourceMoney))
         {
+            totalMoney -= sourceMoney;
+            total.text = totalMoney.ToString();
             // Call the Add method of MoneyManager to update the total money
             MoneyManager.instance.UpdateTotalMoney(sourceMoney);
         }

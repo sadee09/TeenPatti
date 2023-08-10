@@ -10,11 +10,15 @@ public class MoneyManager : MonoBehaviour
     public TMP_Text ai1Money;
     public TMP_Text ai2Money;
 
+<<<<<<< HEAD
     [HideInInspector] public int totalMoney = 0;
     private static int startingPlayerMoney = 10000; 
     private static int startingAI1Money = 10000; // Initial player money value
     private static int startingAI2Money = 10000; // Initial player money value
 
+=======
+    [HideInInspector] public int totalMoney = 0; // Store the total money in an int variable
+>>>>>>> a9d7ce9 (Latest Aug10 Update 11:09)
 
     private void Awake()
     {
@@ -49,10 +53,28 @@ public class MoneyManager : MonoBehaviour
         int currentMoney = int.Parse(playerMoney.text);
         currentMoney += amount;
         playerMoney.text = currentMoney.ToString();
+<<<<<<< HEAD
 
         // Update the static starting player money value
         startingPlayerMoney = currentMoney;
+=======
+    }
+>>>>>>> a9d7ce9 (Latest Aug10 Update 11:09)
 
+    // Method to update AI1's money and text
+    public void UpdateAI1Money(int amount)
+    {
+        int currentMoney = int.Parse(ai1Money.text);
+        currentMoney += amount;
+        ai1Money.text = currentMoney.ToString();
+    }
+
+    // Method to update AI2's money and text
+    public void UpdateAI2Money(int amount)
+    {
+        int currentMoney = int.Parse(ai2Money.text);
+        currentMoney += amount;
+        ai2Money.text = currentMoney.ToString();
     }
 
     // Method to update AI1's money and text
