@@ -27,7 +27,6 @@ public class PlayerManager : MonoBehaviour
 
     public void StartNextTurn()
     {
-        Debug.Log("Next turn started");
         players[currentPlayerIndex].EndTurn();
         currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
         players[currentPlayerIndex].StartTurn();
@@ -46,10 +45,14 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerController removedPlayer = players[i];
             players.RemoveAt(i);
+            Debug.Log("the current palyer index is: "+currentPlayerIndex);
             currentPlayerIndex = i % players.Count;
 
             if (players.Count == 1)
             {
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
+                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
                 GameController.instance.winnerText.text = players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
@@ -80,6 +83,7 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerController removedPlayer = players[i];
             players.RemoveAt(i);
+            Debug.Log("the current palyer index is: "+currentPlayerIndex);
             currentPlayerIndex = i % players.Count;
 
             if (players.Count == 1)
@@ -87,11 +91,13 @@ public class PlayerManager : MonoBehaviour
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
-                GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
+                GameController.instance.winnerText.text =  players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
                 gameController.RestartGame();
             }
+            this.currentPlayerIndex = currentPlayerIndex+1;
+            Debug.Log("the current palyer index is: "+currentPlayerIndex);
         }
     }
 }

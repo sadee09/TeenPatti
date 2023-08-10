@@ -295,14 +295,17 @@ public class GameController : MonoBehaviour
         else if (playerHandType > ai1HandType && playerHandType > ai2HandType && instance.hasPacked == false)
         {
          winnerText.text = "You Win : " + playerHandType;
+         MoneyManager.instance.UpdatePlayerMoney(MoneyManager.instance.totalMoney);
         }
         else if (ai1HandType > playerHandType && ai1HandType > ai2HandType && ai1Controller.hasPacked == false)
         {
             winnerText.text = "AI1 Wins : " + ai1HandType;
+            MoneyManager.instance.UpdateAI1Money(MoneyManager.instance.totalMoney);
         }
         else if (ai2HandType > playerHandType && ai2HandType > ai1HandType && ai2Controller.hasPacked == false)
         {
             winnerText.text = "AI2 Wins : " + ai2HandType;
+            MoneyManager.instance.UpdateAI2Money(MoneyManager.instance.totalMoney);
         }
         else if (ai1HandType == playerHandType)
         {

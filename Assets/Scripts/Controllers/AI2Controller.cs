@@ -38,11 +38,6 @@ public class AI2Controller : PlayerController
         }
     }
 
-    void Start()
-    {
-        random = Random.Range(1, 100);
-    }
-
     private IEnumerator PerformAITurn()
     {
         float thinkingTime = Random.Range(3f, 10f);
@@ -61,10 +56,17 @@ public class AI2Controller : PlayerController
 
     private void seeCards()
     {
+        int random = Random.Range(1, 100);
+        int showrandom = Random.Range(1, 100);
+
         if (random < 60 && turn == 1 || random < 40 && turn == 2 || random < 30)
         {
             isSeen = false;
             PlaceBet();
+        }
+        else if (!isSeen && aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 5 || !isSeen && !aI1Controller.isSeen && !gameController.playerCardSeen && showrandom < 5 || !isSeen && aI1Controller.isSeen && !gameController.playerCardSeen && showrandom < 5 || isSeen !&& aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 5)
+        {
+            OnShow();
         }
         else
         {
@@ -80,6 +82,9 @@ public class AI2Controller : PlayerController
 
     private void CardsEvaluator()
     {
+        int random = Random.Range(1, 100);
+        int showrandom = Random.Range(1, 100);
+
         if (isSeen)
         {
             if (gameController.ai2HandType == HandEvaluator.HandType.HighCard)
@@ -88,9 +93,8 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else 
@@ -104,9 +108,8 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                 else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else
@@ -116,15 +119,12 @@ public class AI2Controller : PlayerController
             }
             else if (gameController.ai2HandType == HandEvaluator.HandType.Color)
             {
-                Debug.Log("AI2 show");
                 if ((random < 100 && turn == 1) || (random < 95 && turn == 2) || (random < 85))
                 {
-                    Debug.Log("AI2 show");
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else
@@ -138,9 +138,8 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else
@@ -154,9 +153,8 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else
@@ -170,9 +168,8 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                else if (aI1Controller.isSeen && gameController.playerCardSeen)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
-                    Debug.Log("inside the on show thing");
                     OnShow();
                 }
                 else
@@ -250,6 +247,7 @@ public class AI2Controller : PlayerController
         StartCoroutine(gameController.RotateCardsList(gameController.ai1CardsList));
         StartCoroutine(gameController.RotateCardsList(gameController.ai2CardsList));
         PlaceBet();
+        GameController.instance.seeBtn.interactable = false;
         gameManager.StartNextTurn();
         StartCoroutine(WinnerText());
         gameController.RestartGame();
