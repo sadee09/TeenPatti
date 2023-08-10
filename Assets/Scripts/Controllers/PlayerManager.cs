@@ -84,9 +84,6 @@ public class PlayerManager : MonoBehaviour
 
             if (players.Count == 1)
             {
-                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
-                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
-                StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
                 GameController.instance.winnerText.text = "Player " + players[0].gameObject.name + " Wins!";
                 players[currentPlayerIndex].EndTurn();
                 gameController.EndGame();
@@ -94,4 +91,5 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
+
 }

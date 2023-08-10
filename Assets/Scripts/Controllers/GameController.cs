@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
   public AI2Controller ai2Controller;
   public PlayerManager playerManager;
 
+  private Dictionary<string, System.Action<int>> moneyUpdateMethods = new Dictionary<string, System.Action<int>>();
   private void Awake()
   {
     if (instance == null)
@@ -63,6 +64,7 @@ public class GameController : MonoBehaviour
     playerPanel.GetComponent<CanvasGroup>().interactable = false;
     seeBtn.interactable = false;
     sideShowBtn.interactable = false;
+    
   }
 
   IEnumerator WaitForCardLoading()
@@ -230,6 +232,7 @@ public class GameController : MonoBehaviour
       cardsList[i].GetComponent<UICard>().gob_BackCard.SetActive(false);
     }
   }
+    
 
   public void Pack()
   {
@@ -266,8 +269,6 @@ public class GameController : MonoBehaviour
   {
         SettingsUI.GetInstance().PanelIn();
   }
-    
-
     public void DetermineWinningHand()
     {
        
@@ -278,6 +279,10 @@ public class GameController : MonoBehaviour
         HandEvaluator.HandType playerHandType = HandEvaluator.GetHandType(playerCardsList);
         HandEvaluator.HandType ai1HandType = HandEvaluator.GetHandType(ai1CardsList);
         HandEvaluator.HandType ai2HandType = HandEvaluator.GetHandType(ai2CardsList);
+        
+        moneyUpdateMethods.Add("You", MoneyManager.instance.UpdatePlayerMoney);
+        moneyUpdateMethods.Add("AI1", MoneyManager.instance.UpdateAI1Money);
+        moneyUpdateMethods.Add("AI2", MoneyManager.instance.UpdateAI2Money);
 
         if (ai2Controller.hasPacked)
         {
@@ -295,14 +300,17 @@ public class GameController : MonoBehaviour
         else if (playerHandType > ai1HandType && playerHandType > ai2HandType && instance.hasPacked == false)
         {
          winnerText.text = "You Win : " + playerHandType;
+         MoneyManager.instance.UpdatePlayerMoney(MoneyManager.instance.totalMoney);
         }
         else if (ai1HandType > playerHandType && ai1HandType > ai2HandType && ai1Controller.hasPacked == false)
         {
             winnerText.text = "AI1 Wins : " + ai1HandType;
+            MoneyManager.instance.UpdateAI1Money(MoneyManager.instance.totalMoney);
         }
         else if (ai2HandType > playerHandType && ai2HandType > ai1HandType && ai2Controller.hasPacked == false)
         {
             winnerText.text = "AI2 Wins : " + ai2HandType;
+            MoneyManager.instance.UpdateAI2Money(MoneyManager.instance.totalMoney);
         }
         else if (ai1HandType == playerHandType)
         {
@@ -317,6 +325,8 @@ public class GameController : MonoBehaviour
             DetermineTieBreaker(playerCardsList, ai2CardsList, "You", "AI2");
         }
     }
+
+
     private void CompareWhenPacked(List<GameObject> hand1, List<GameObject> hand2, string hand1Name, string hand2Name)
     {
         HandEvaluator.HandType hand1Type = HandEvaluator.GetHandType(hand1);
@@ -325,10 +335,14 @@ public class GameController : MonoBehaviour
         if (hand1Type > hand2Type)
         {
             winnerText.text = hand1Name + " Win : " + hand1Type;
+            moneyUpdateMethods[hand1Name](MoneyManager.instance.totalMoney);
+
         }
         else if (hand2Type > hand1Type)
         {
             winnerText.text = hand2Name + " Wins : " + hand2Type;
+            moneyUpdateMethods[hand2Name](MoneyManager.instance.totalMoney);
+
         }
         else
         {
@@ -345,10 +359,12 @@ public class GameController : MonoBehaviour
         if (highestCard1.value > highestCard2.value)
         {
             winnerText.text = winnerLabel1 + " Win : Highest Card";
+            moneyUpdateMethods[winnerLabel1](MoneyManager.instance.totalMoney);
         }
         else if (highestCard2.value > highestCard1.value)
         {
             winnerText.text = winnerLabel2 + " Win : Highest Card";
+            moneyUpdateMethods[winnerLabel2](MoneyManager.instance.totalMoney);
         }
     }
 
