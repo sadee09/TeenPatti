@@ -108,7 +108,7 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                 else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
                     OnShow();
                 }
@@ -182,17 +182,29 @@ public class AI2Controller : PlayerController
 
     private void PlaceBet()
     {
+        int newBet;
+
         if (lastBet == 0)
         {
-            // If it's the first bet, choose randomly between 10 and 20
-            currentBet = Random.Range(0, 2) == 0 ? 10 : 20;
+            newBet = Random.Range(0, 2) == 0 ? 10 : 20;
         }
         else
         {
-            // If it's not the first bet, double the last bet
-            currentBet = lastBet * 2;
+            newBet = lastBet * 2;
         }
 
+        // If the AI has seen the cards, double the bet
+        if (isSeen)
+        {
+            newBet *= 2;
+        }
+
+        // If the new bet is greater than the current bet, update the current bet
+        if (newBet > currentBet)
+        {
+            currentBet = newBet;
+        }
+        
         totalMoney -= currentBet;
         Debug.Log("AI2 bets: " + currentBet);
 

@@ -3134,9 +3134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Total: {fileID: 989491502}
-  playerMoney: {fileID: 271149485}
-  ai1Money: {fileID: 1408426471}
-  ai2Money: {fileID: 1920702362}
+  playerMoneyText: {fileID: 271149485}
+  ai1MoneyText: {fileID: 1408426471}
+  ai2MoneyText: {fileID: 1920702362}
   totalMoney: 0
 --- !u!4 &731604627
 Transform:
