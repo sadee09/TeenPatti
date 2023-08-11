@@ -17,7 +17,7 @@ public class AI2Controller : PlayerController
     public GameObject Seen;
     public bool hasPacked = false;
     private int random;
-    public MoneyManager moneyManager;
+    private MoneyManager moneyManager;
     public GameController gameController;
     public static AI2Controller instance;
     public AI1Controller aI1Controller;
@@ -36,11 +36,6 @@ public class AI2Controller : PlayerController
         {
             gameManager.AddPlayer(this);
         }
-    }
-
-    public void Start()
-    {
-        
     }
 
     private IEnumerator PerformAITurn()
@@ -113,7 +108,7 @@ public class AI2Controller : PlayerController
                 {
                     PlaceBet();
                 }
-                 else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
+                else if (aI1Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
                 {
                     OnShow();
                 }
@@ -187,17 +182,31 @@ public class AI2Controller : PlayerController
 
     private void PlaceBet()
     {
+        int newBet;
+
         if (lastBet == 0)
         {
-            currentBet = Random.Range(0, 2) == 0 ? 10 : 20;
+            newBet = Random.Range(0, 2) == 0 ? 10 : 20;
         }
         else
         {
-            currentBet = lastBet * 2;
+            newBet = lastBet * 2;
         }
 
+        // If the AI has seen the cards, double the bet
+        if (isSeen)
+        {
+            newBet *= 2;
+        }
+
+        // If the new bet is greater than the current bet, update the current bet
+        if (newBet > currentBet)
+        {
+            currentBet = newBet;
+        }
+        
         totalMoney -= currentBet;
-        Debug.Log("AI1 bets: " + currentBet);
+        Debug.Log("AI2 bets: " + currentBet);
 
         UpdateUI();
 
@@ -232,7 +241,7 @@ public class AI2Controller : PlayerController
     {
         if (betText != null)
             betText.text = currentBet.ToString();
-            MoneyManager.instance.UpdateTotalMoney(currentBet);
+        MoneyManager.instance.UpdateTotalMoney(currentBet);
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();
