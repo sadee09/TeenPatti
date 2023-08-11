@@ -239,7 +239,7 @@ public class AI1Controller : PlayerController
     {
         if (betText != null)
             betText.text = currentBet.ToString();
-        MoneyManager.instance.UpdateTotalMoney(currentBet);
+            MoneyManager.instance.UpdateTotalMoney(currentBet);
 
         if (moneyText != null)
             moneyText.text = totalMoney.ToString();

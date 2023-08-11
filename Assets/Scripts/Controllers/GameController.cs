@@ -109,25 +109,6 @@ public class GameController : MonoBehaviour
   
     StartCoroutine(SplitCards());
   }
-  private void DistributeSpecificCardsToPlayers(List<int> playerIndices, List<int> ai1Indices, List<int> ai2Indices)
-  {
-      foreach (int index in playerIndices)
-      {
-          playerCardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai1Indices)
-      {
-          ai1CardsList.Add(listCard[index]);
-      }
-
-      foreach (int index in ai2Indices)
-      {
-          ai2CardsList.Add(listCard[index]);
-      }
-      StartCoroutine(SplitCards());
-  }
-
 
   IEnumerator SplitCards()
   {
@@ -390,11 +371,6 @@ public class GameController : MonoBehaviour
         }
         return highestCard;
     }
-
-  public void EndGame()
-  {
-    DetermineWinningHand();
-  }
 
   public void RestartGame()
   {

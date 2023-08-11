@@ -9,7 +9,7 @@ public class AI2Controller : PlayerController
     [SerializeField] private TextMeshProUGUI betText;
     [SerializeField] private TextMeshProUGUI moneyText;
     public GameObject activering;
-    public int totalMoney;
+    private int totalMoney = 10000;
     private int currentBet = 0;
     private int lastBet = 0;
     private int turn = 0;
@@ -189,17 +189,15 @@ public class AI2Controller : PlayerController
     {
         if (lastBet == 0)
         {
-            // If it's the first bet, choose randomly between 10 and 20
             currentBet = Random.Range(0, 2) == 0 ? 10 : 20;
         }
         else
         {
-            // If it's not the first bet, double the last bet
             currentBet = lastBet * 2;
         }
 
         totalMoney -= currentBet;
-        Debug.Log("AI2 bets: " + currentBet);
+        Debug.Log("AI1 bets: " + currentBet);
 
         UpdateUI();
 

@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private bool gameStarted = false;
     public GameController gameController;
     public PlayerController ai1Controller;
+    public AI2Controller ai2Controller; 
 
     void Start()
     {
@@ -45,7 +46,6 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerController removedPlayer = players[i];
             players.RemoveAt(i);
-            Debug.Log("the current palyer index is: "+currentPlayerIndex);
             currentPlayerIndex = i % players.Count;
 
             if (players.Count == 1)
@@ -53,9 +53,27 @@ public class PlayerManager : MonoBehaviour
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
-                GameController.instance.winnerText.text = players[0].gameObject.name + " Wins!";
+
+                PlayerController remainingPlayer = players[0];
+
+                // Check the type of the remaining player
+                if (remainingPlayer == ai1Controller)
+                {
+                    // If the remaining player is AI1Controller
+                    GameController.instance.winnerText.text = "AI1 Wins!";
+                }
+                else if (remainingPlayer == ai2Controller)
+                {
+                    // If the remaining player is AI2Controller
+                    GameController.instance.winnerText.text = "AI2 Wins!";
+                }
+                else
+                {
+                    // If the remaining player is not AI, assume it's the player-panel
+                    GameController.instance.winnerText.text = "You Win!";
+                }
+
                 players[currentPlayerIndex].EndTurn();
-                gameController.EndGame();
                 gameController.RestartGame();
             }
         }
@@ -83,7 +101,6 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerController removedPlayer = players[i];
             players.RemoveAt(i);
-            Debug.Log("the current palyer index is: "+currentPlayerIndex);
             currentPlayerIndex = i % players.Count;
 
             if (players.Count == 1)
@@ -91,13 +108,29 @@ public class PlayerManager : MonoBehaviour
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.playerCardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai1CardsList));
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
-                GameController.instance.winnerText.text =  players[0].gameObject.name + " Wins!";
+                PlayerController remainingPlayer = players[0];
+
+                // Check the type of the remaining player
+                if (remainingPlayer == ai1Controller)
+                {
+                    // If the remaining player is AI1Controller
+                    GameController.instance.winnerText.text = "AI1 Wins!";
+                }
+                else if (remainingPlayer == ai2Controller)
+                {
+                    // If the remaining player is AI2Controller
+                    GameController.instance.winnerText.text = "AI2 Wins!";
+                }
+                else
+                {
+                    // If the remaining player is not AI, assume it's the player-panel
+                    GameController.instance.winnerText.text = "You Win!";
+                }
+
                 players[currentPlayerIndex].EndTurn();
-                gameController.EndGame();
                 gameController.RestartGame();
             }
             this.currentPlayerIndex = currentPlayerIndex+1;
-            Debug.Log("the current palyer index is: "+currentPlayerIndex);
         }
     }
 }
