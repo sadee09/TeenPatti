@@ -11,7 +11,6 @@ public class MeController : PlayerController
     public TMP_Text blindButtonText;
     public TextMeshProUGUI myText;
     private int totalMoney = 10000;
-    private int currentBet = 0;
     public GameObject Blindbutton;
     public GameObject Panel;
     public GameObject addButton;
@@ -21,17 +20,13 @@ public class MeController : PlayerController
     public Button seeBtn;
     public Button sideShowBtn;
     public CanvasGroup canvasSideShow;
-    private bool AddActive;
-    private bool SubActive;
     public bool seen;
     public TextMeshProUGUI total;
     public GameController gameController;
     public AI1Controller ai1Controller;
     public static MeController instance;
-    private int currentValue;
+    private int newValue;
     
-
-
     private void Awake()
     {
         // Add a listener to the "See" button so it can react to clicks
@@ -52,70 +47,63 @@ public class MeController : PlayerController
     void Start()
     {
         gameController = FindObjectOfType<GameController>();
-        // Disable the subtract button and set myText to 10
-        subButton.SetActive(false);
         myText.text = 10.ToString();
         total.text = totalMoney.ToString();
-
-        // Set the packButton to initially inactive
         packButton.SetActive(false);
         activering.SetActive(false);
         Panel.SetActive(false);
+        subButton.SetActive(false);
+        UpdateButtons();
     }
 
-    // Add method for doubling the value displayed in myText
+    private void UpdateButtons()
+    {
+        int currentValue = int.Parse(myText.text);
+
+        addButton.SetActive(currentValue + 1000 <= totalMoney);
+        subButton.SetActive(currentValue - 10 >= 10);
+        Blindbutton.SetActive(currentValue < totalMoney);
+    }
+
     public void Add()
     {
-        if (!SubActive)
+        int currentValue = int.Parse(myText.text);
+        newValue = currentValue + 100;
+
+        if (newValue <= totalMoney)
         {
-            int currentValue = int.Parse(myText.text);
-            int newValue = currentValue * 2;
             myText.text = newValue.ToString();
-            SubActive = true;
-            AddActive = false;
-            addButton.SetActive(false);
-            subButton.SetActive(true);
         }
+
+        UpdateButtons();
     }
 
-    // Subtract method for halving the value displayed in myText
     public void Sub()
     {
-        if (!AddActive)
+        int currentValue = int.Parse(myText.text);
+        int newValue = currentValue - 100;
+
+        if (newValue >= 10)
         {
-            int currentValue = int.Parse(myText.text);
-            int newValue = currentValue / 2;
             myText.text = newValue.ToString();
-            AddActive = true;
-            SubActive = false;
-            addButton.SetActive(true);
-            subButton.SetActive(false);
         }
+
+        UpdateButtons();
     }
 
-    // Method called when the "See" button is clicked
     private void SeeButtonClicked()
     {
         seen = true;
+
         if (ai1Controller.isSeen && ai1Controller.hasPacked == false)
         {
             canvasSideShow.DOFade(1, 1.0f);
         }
 
-        // Change the text of the blindButton when the "See" button is clicked
         blindButtonText.text = "Chal";
-
-        // Double the value displayed in myText
-        if (int.TryParse(myText.text, out currentValue))
-        {
-            myText.text = (currentValue * 2).ToString();
-        }
-
-        // Call the PackButton method to check if the packButton should be activated
         PackButton();
     }
 
-    // Method to update the TotalMoney and the text displayed in total
     public void UpdateMoneyText()
     {
         int sourceMoney;
@@ -123,7 +111,6 @@ public class MeController : PlayerController
         {
             totalMoney -= sourceMoney;
             total.text = totalMoney.ToString();
-            // Call the Add method of MoneyManager to update the total money
             MoneyManager.instance.UpdateTotalMoney(sourceMoney);
         }
 
@@ -135,12 +122,10 @@ public class MeController : PlayerController
         int sourceMoney;
         if (int.TryParse(myText.text, out sourceMoney))
         {
-            // Call the Add method of MoneyManager to update the total money
             MoneyManager.instance.UpdateTotalMoney(sourceMoney);
         }
     }
 
-    // Method to activate the packButton
     public void PackButton()
     {
         if (seen)
@@ -149,10 +134,8 @@ public class MeController : PlayerController
         }
     }
 
-    // Method called when the "Pack" button is clicked
     public void Pack()
     {
-        // Check if the GameController instance exists and destroy the cards in the playerCardsList
         if (GameController.instance != null)
         {
             foreach (GameObject card in GameController.instance.playerCardsList)
@@ -161,9 +144,7 @@ public class MeController : PlayerController
             }
         }
         canvasSideShow.DOFade(1, 1.0f);
-        // Ends the player's turn
         gameManager.StartNextTurn();
-
         gameManager.PlayerPack();
     }
 
@@ -178,7 +159,6 @@ public class MeController : PlayerController
         StartCoroutine(WinnerText());
         gameController.RestartGame();
     }
-    
 
     private IEnumerator WinnerText()
     {
@@ -194,6 +174,8 @@ public class MeController : PlayerController
         sideShowBtn.interactable = true;
         activering.SetActive(true);
         Debug.Log("Start of players turn");
+        newValue = 10;
+        myText.text = newValue.ToString();
     }
 
     public override void EndTurn()

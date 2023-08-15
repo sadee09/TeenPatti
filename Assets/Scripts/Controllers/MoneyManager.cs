@@ -25,7 +25,7 @@ public class MoneyManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateTotalMoney(0); // Update the total money initially
+        UpdateTotalMoney(0);
     }
 
     public void UpdateTotalMoney(int amount)

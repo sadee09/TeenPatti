@@ -6,8 +6,8 @@ using DG.Tweening;
 
 public class AI1Controller : PlayerController
 {
-    [SerializeField] private TextMeshProUGUI betText;
-    [SerializeField] private TextMeshProUGUI moneyText;
+    public TextMeshProUGUI betText;
+    public TextMeshProUGUI moneyText;
     public GameObject activering;
     private int totalMoney = 10000;
     private int currentBet = 0;
@@ -62,7 +62,7 @@ public class AI1Controller : PlayerController
         int random = Random.Range(1, 100);
         int showrandom = Random.Range(1, 100);
 
-        if (random < 50 && turn == 1 || random < 40 && turn == 2 || random < 30)
+        if (random < 80 && turn == 1 || random < 70 && turn == 2 || random < 60)
         {
             isSeen = false;
             PlaceBet();
@@ -99,11 +99,15 @@ public class AI1Controller : PlayerController
         {
             if (GameController.instance.ai1HandType == HandEvaluator.HandType.HighCard)
             {
-                if ((random < 60 && turn == 1) || (random < 40 && turn == 2) || (random < 30))
+                if ((random < 80 && turn == 1) || (random < 70 && turn == 2) || (random < 60))
                 {
                     PlaceBet();
                 }
                 else if (aI2Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
+                {
+                    OnShow();
+                }
+                else if (turn > 15)
                 {
                     OnShow();
                 }
@@ -122,6 +126,10 @@ public class AI1Controller : PlayerController
                 {
                     OnShow();
                 }
+                else if (turn > 15)
+                {
+                    OnShow();
+                }
                 else
                 {
                     Pack();
@@ -134,6 +142,10 @@ public class AI1Controller : PlayerController
                     PlaceBet();
                 }
                 else if (aI2Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
+                {
+                    OnShow();
+                }
+                else if (turn > 15)
                 {
                     OnShow();
                 }
@@ -152,6 +164,10 @@ public class AI1Controller : PlayerController
                 {
                     OnShow();
                 }
+                else if (turn > 15)
+                {
+                    OnShow();
+                }
                 else
                 {
                     Pack();
@@ -167,6 +183,10 @@ public class AI1Controller : PlayerController
                 {
                     OnShow();
                 }
+                else if (turn > 15)
+                {
+                    OnShow();
+                }
                 else
                 {
                     Pack();
@@ -179,6 +199,10 @@ public class AI1Controller : PlayerController
                     PlaceBet();
                 }
                 else if (aI2Controller.isSeen && gameController.playerCardSeen && showrandom < 10)
+                {
+                    OnShow();
+                }
+                else if (turn > 15)
                 {
                     OnShow();
                 }

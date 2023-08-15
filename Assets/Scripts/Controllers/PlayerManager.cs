@@ -110,20 +110,19 @@ public class PlayerManager : MonoBehaviour
                 StartCoroutine(GameController.instance.RotateCardsList(GameController.instance.ai2CardsList));
                 PlayerController remainingPlayer = players[0];
 
-                // Check the type of the remaining player
                 if (remainingPlayer == ai1Controller)
                 {
-                    // If the remaining player is AI1Controller
+
                     GameController.instance.winnerText.text = "AI1 Wins!";
                 }
                 else if (remainingPlayer == ai2Controller)
                 {
-                    // If the remaining player is AI2Controller
+
                     GameController.instance.winnerText.text = "AI2 Wins!";
                 }
                 else
                 {
-                    // If the remaining player is not AI, assume it's the player-panel
+
                     GameController.instance.winnerText.text = "You Win!";
                 }
 

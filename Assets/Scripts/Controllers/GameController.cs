@@ -380,8 +380,6 @@ public class GameController : MonoBehaviour
   private IEnumerator RestartAfterDelay(float delayInSeconds)
   {
     yield return new WaitForSeconds(delayInSeconds);
-
-    // Restart the game after the delay
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
   }
 }

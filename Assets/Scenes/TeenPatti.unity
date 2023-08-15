@@ -3137,9 +3137,6 @@ MonoBehaviour:
   playerMoneyText: {fileID: 271149485}
   ai1MoneyText: {fileID: 1408426471}
   ai2MoneyText: {fileID: 1920702362}
-  memoney: 0
-  ai1money: 0
-  ai2money: 0
   totalMoney: 0
 --- !u!4 &731604627
 Transform:
@@ -4660,6 +4657,7 @@ MonoBehaviour:
   players: []
   gameController: {fileID: 548992964}
   ai1Controller: {fileID: 2098102041}
+  ai2Controller: {fileID: 1976427266}
 --- !u!4 &1131575124
 Transform:
   m_ObjectHideFlags: 0
@@ -7283,7 +7281,6 @@ MonoBehaviour:
   betText: {fileID: 989491502}
   moneyText: {fileID: 1920702362}
   activering: {fileID: 1858387094}
-  totalMoney: 0
   isSeen: 0
   Seen: {fileID: 1895485282}
   hasPacked: 0
